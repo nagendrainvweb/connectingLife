@@ -24,7 +24,7 @@ setupDialogUi() {
 
 class _ProgressDialog extends StatelessWidget {
   const _ProgressDialog({
-    Key? key, required this.request, required this.completer,
+    Key key, @required this.request, @required this.completer,
   }) : super(key: key);
 
     final DialogRequest request;
@@ -35,18 +35,18 @@ class _ProgressDialog extends StatelessWidget {
     return Dialog(
       child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-          child: new Container(
+          child:  Container(
             color: Colors.white,
-            child: new Row(
+            child:  Row(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 // new SizedBox(height: 10,
-                new CircularProgressIndicator(),
+                 CircularProgressIndicator(),
                 //),
 
-                new Padding(
+                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
-                  child: new Text(
+                  child: Text(
                     request.description,
                     style: TextStyle(fontSize: 14, color: Colors.grey[700]),
                   ),
@@ -62,8 +62,8 @@ class _ProgressDialog extends StatelessWidget {
 
 class _ErrorDialog extends StatelessWidget {
   const _ErrorDialog({
-    Key? key,
-    required this.request, required this.completer,
+    Key key,
+    @required this.request, @required this.completer,
   }) : super(key: key);
   final DialogRequest request;
   final Function(DialogResponse) completer;

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
   final AppRepo repo;
   final bool login;
 
-  const MyApp({Key? key, required this.repo, required this.login}) : super(key: key);
+  const MyApp({Key key, @required this.repo, @required this.login}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
