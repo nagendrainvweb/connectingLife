@@ -2,6 +2,7 @@ import 'package:clife/app/app_repo.dart';
 import 'package:clife/app/locator.dart';
 import 'package:clife/prefrence_util/Prefs.dart';
 import 'package:clife/screens/dashboard/dashboard_page.dart';
+import 'package:clife/screens/intro_screens/intro_page.dart';
 import 'package:clife/screens/login/login_page.dart';
 import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +41,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         //title: 'Flutter Demo',
         theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primarySwatch: Colors.pink,
             textTheme:
                 GoogleFonts.robotoTextTheme(Theme.of(context).textTheme)),
-        home: (login) ? DashboardPage() : LoginPage(),
+        home: (login) ? DashboardPage() : IntroPage(),
         routes: routies,
       ),
     );
