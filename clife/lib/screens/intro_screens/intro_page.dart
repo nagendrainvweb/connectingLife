@@ -55,9 +55,11 @@ class _IntroPageState extends State<IntroPage> {
         ),
       ),
       globalFooter: SizedBox(
-        width: double.infinity,
-        height: 60,
-        child: Row(mainAxisAlignment: MainAxisAlignment.center,
+        // width: double.infinity,
+        height: 50,
+        width: 150,
+        child: Row(
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
               child: ElevatedButton(
@@ -71,7 +73,7 @@ class _IntroPageState extends State<IntroPage> {
                 ) ,
               ),
             ),
-            Expanded(child: Text(""),),
+            // Expanded(child: Text(""),),
           ],
         ),
         
