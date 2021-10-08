@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.pink,
             textTheme:
-                GoogleFonts.robotoTextTheme(Theme.of(context).textTheme)),
+                GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
         home: (login) ? DashboardPage() : IntroPage(),
         routes: routies,
       ),

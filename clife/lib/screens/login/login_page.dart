@@ -16,68 +16,57 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.greyColor,
+      backgroundColor: AppColors.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            AppLogo(),
-            SizedBox(
+            const AppLogo(),
+            const SizedBox(
               height: 20,
             ),
             Row(
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
-                Expanded(
-                  child: Text(
-                    "Dramatically unleash cutting-edge vortals before maintainable platforms.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text(
+                      "Dramatically unleash cutting-edge vortals before maintainable platforms.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 20,),
-            Container(
-              color: AppColors.backgroundColor,
-              padding: EdgeInsets.only(
-                left: 15
-              ),
-              margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 20,
-              ),
-             child: Row(
-               children: [
-                  Icon(
-                  Icons.call_outlined,
-                  color: AppColors.mainColor,
-                ),
-                SizedBox(width: 10,),
-                 Expanded(
-                   child: TextField(
-                     decoration: InputDecoration(
-                       filled: true,
-                       border: InputBorder.none,
-                       fillColor: AppColors.backgroundColor,
-                       hintText: "Mobile.No",
-                     ),
-                   ),
-                 ),
-               ],
-             ),
+            const SizedBox(
+              height: 20,
             ),
-            SizedBox(height: 10,),
+            Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: AppTextfield(
+                  icon: Icons.call_outlined,
+                  hint: "Mobile No",
+                )),
+            SizedBox(
+              height: 20,
+            ),
             ButtonView(
               buttonText: "Sign In",
+              textColor: AppColors.buttonColor,
               // color: AppColors.backgroundColor,
-              onPressed: (){},
+              onPressed: () {},
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 15,
+            ),
             ButtonView(
               buttonText: "Sign Up",
               color: AppColors.buttonColor,
-              onPressed: (){} ,
+              onPressed: () {},
             ),
           ],
         ),
