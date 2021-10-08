@@ -10,7 +10,7 @@ class AppLogo extends StatelessWidget {
         Container(
           padding: EdgeInsets.only(top: 30,),
           child: Image(
-            image: AssetImage("assets/intro.jpg"),
+            image: AssetImage("assets/logo.png"),
             fit: BoxFit.contain,
           ),
         ),

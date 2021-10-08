@@ -20,4 +20,5 @@ class AppColors {
   static const Color blackLight = Colors.black54;
   static const Color blackText = Colors.black87;
   static final Color grey400 = Colors.grey[400];
+  static final Color backgroundColor = Color(0xfff4f8fb);
 }

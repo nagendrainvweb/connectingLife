@@ -16,6 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.greyColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -38,34 +39,38 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 20,),
             Container(
-              padding: EdgeInsets.symmetric(
-                horizontal:20,
+              color: AppColors.backgroundColor,
+              padding: EdgeInsets.only(
+                left: 15
+              ),
+              margin: EdgeInsets.symmetric(
+                horizontal: 20,
                 vertical: 20,
               ),
-              child: Row(
-                children: [
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    decoration:  InputDecoration(
-                      prefixIcon: Icon(Icons.call),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        hintText: 'Mobile.no',
-                        contentPadding: EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 10,
-                        ),
-                        ),
-                  ),
-                  
-                ],
-              ),
+             child: Row(
+               children: [
+                  Icon(
+                  Icons.call_outlined,
+                  color: AppColors.mainColor,
+                ),
+                SizedBox(width: 10,),
+                 Expanded(
+                   child: TextField(
+                     decoration: InputDecoration(
+                       filled: true,
+                       border: InputBorder.none,
+                       fillColor: AppColors.backgroundColor,
+                       hintText: "Mobile.No",
+                     ),
+                   ),
+                 ),
+               ],
+             ),
             ),
             SizedBox(height: 10,),
             ButtonView(
               buttonText: "Sign In",
-              color: AppColors.buttonColor,
+              // color: AppColors.backgroundColor,
               onPressed: (){},
             ),
             SizedBox(height: 10,),
