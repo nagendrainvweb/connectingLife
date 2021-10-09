@@ -16,7 +16,8 @@ class ButtonView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      minWidth: 120,
+      elevation: 0,
+      minWidth: 180,
       padding: EdgeInsets.symmetric(
         horizontal: 50,
         vertical: 10,

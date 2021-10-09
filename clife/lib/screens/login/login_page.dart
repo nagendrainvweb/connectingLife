@@ -1,7 +1,9 @@
 import 'package:clife/app_widget/app_textfield.dart';
 import 'package:clife/app_widget/button_widget.dart';
+import 'package:clife/screens/otp_screen/otp_page.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/app_logo.dart';
+import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -56,18 +58,20 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ButtonView(
               buttonText: "Sign In",
-              textColor: AppColors.buttonColor,
-              // color: AppColors.backgroundColor,
-              onPressed: () {},
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            ButtonView(
-              buttonText: "Sign Up",
+              // textColor: AppColors.buttonColor,
               color: AppColors.buttonColor,
-              onPressed: () {},
+              onPressed: () {
+                Utility.pushToNext(context, OtpPage());
+              },
             ),
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // ButtonView(
+            //   buttonText: "Sign Up",
+            //   color: AppColors.buttonColor,
+            //   onPressed: () {},
+            // ),
           ],
         ),
       ),
