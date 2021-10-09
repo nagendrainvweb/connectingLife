@@ -4,6 +4,7 @@ import 'package:clife/prefrence_util/Prefs.dart';
 import 'package:clife/screens/dashboard/dashboard_page.dart';
 import 'package:clife/screens/intro_screens/intro_page.dart';
 import 'package:clife/screens/login/login_page.dart';
+import 'package:clife/util/app_color.dart';
 import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,12 +40,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider<AppRepo>.value(value: repo)],
       child: MaterialApp(
+        color: AppColors.backgroundColor,
         //title: 'Flutter Demo',
         theme: ThemeData(
             primarySwatch: Colors.pink,
             appBarTheme: AppBarTheme(
               color: Colors.transparent,
-              brightness: 
+              brightness: Brightness.light
             ),
             textTheme:
                 GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),

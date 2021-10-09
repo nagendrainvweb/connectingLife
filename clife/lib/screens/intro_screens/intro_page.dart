@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroPage extends StatefulWidget {
-  const IntroPage({ Key key }) : super(key: key);
+  const IntroPage({Key key}) : super(key: key);
 
   @override
   _IntroPageState createState() => _IntroPageState();
@@ -18,7 +18,8 @@ class _IntroPageState extends State<IntroPage> {
       MaterialPageRoute(builder: (_) => LoginPage()),
     );
   }
-   Widget _buildFullscrenImage() {
+
+  Widget _buildFullscrenImage() {
     return Image.asset(
       'assets/logo.png',
       fit: BoxFit.cover,
@@ -27,37 +28,39 @@ class _IntroPageState extends State<IntroPage> {
       alignment: Alignment.center,
     );
   }
-  Widget _buildImage(String assetName, [double width = 350]) {
+
+  Widget _buildImage(String assetName, [double width = 300]) {
     return Image.asset('assets/$assetName', width: width);
   }
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
+    const bodyStyle = TextStyle(fontSize: 18.0);
 
-    const pageDecoration =  PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
+    const pageDecoration = PageDecoration(
+      titleTextStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700),
       bodyTextStyle: bodyStyle,
       descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: Colors.white,
+     // pageColor: Colors.white,
       imagePadding: EdgeInsets.zero,
     );
     return Container(
       child: IntroductionScreen(
         key: introKey,
-        globalBackgroundColor: Colors.white,
-        globalHeader: Align(
-          alignment: Alignment.topRight,
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
-              child: _buildImage('logo.png', 100),
-            ),
-          ),
-        ),
-        globalFooter: SizedBox(
+        globalBackgroundColor: AppColors.backgroundColor,
+        // globalHeader: Align(
+        //   alignment: Alignment.topRight,
+        //   child: SafeArea(
+        //     child: Padding(
+        //       padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 16),
+        //       child: _buildImage('logo.png', 100),
+        //     ),
+        //   ),
+        // ),
+        globalFooter: Container(
           // width: double.infinity,
-          height: 80,
+          //   height: 80,
+          padding: const EdgeInsets.symmetric(vertical: 10),
           width: 150,
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.center,
@@ -66,25 +69,23 @@ class _IntroPageState extends State<IntroPage> {
                 child: ElevatedButton(
                   child: const Text(
                     'Let\s Begin',
-                    style: TextStyle( fontWeight: FontWeight.normal),
+                    style: TextStyle(fontWeight: FontWeight.normal),
                   ),
                   onPressed: () => _onIntroEnd(context),
-                  style:ElevatedButton.styleFrom(
+                  style: ElevatedButton.styleFrom(
                     primary: AppColors.mainColor,
-                  ) ,
+                  ),
                 ),
               ),
               // Expanded(child: Text(""),),
             ],
           ),
-          
         ),
         pages: [
           PageViewModel(
             title: "Find Donators",
             body:
                 "Dramatically unleash cutting-edge vortals before maintainable platforms.",
-                
             image: _buildImage('intro.jpg'),
             decoration: pageDecoration,
           ),
@@ -162,23 +163,24 @@ class _IntroPageState extends State<IntroPage> {
         nextFlex: 0,
         //rtl: true, // Display as right-to-left
         skip: const Text('Skip'),
-        next: const Icon(Icons.arrow_forward),
+        next: const Text('Next'),
         done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
         curve: Curves.fastLinearToSlowEaseIn,
         controlsMargin: const EdgeInsets.all(16),
         controlsPadding: kIsWeb
             ? const EdgeInsets.all(12.0)
             : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-        dotsDecorator:  DotsDecorator(
+        dotsDecorator: DotsDecorator(
           size: Size(10.0, 10.0),
-          color: AppColors.mainColor,
+          color: AppColors.grey400,
+          activeColor: AppColors.mainColor,
           activeSize: Size(10.0, 10.0),
           activeShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(25.0)),
           ),
         ),
         dotsContainerDecorator: const ShapeDecoration(
-          color: Colors.white,
+        //  color: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
           ),

@@ -44,11 +44,11 @@ class AppTextfield extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
             child: Icon(
               icon,
               color: AppColors.mainColor,
-              size: 24,
+              size: 20,
             ),
           ),
           Container(
@@ -57,7 +57,7 @@ class AppTextfield extends StatelessWidget {
             color: AppColors.grey300,
           ),
           const SizedBox(
-            width: 10,
+            width: 8,
           ),
           Expanded(
             child: TextField(
