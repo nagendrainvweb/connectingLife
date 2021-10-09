@@ -18,27 +18,32 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Register",),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              padding: EdgeInsets.only(
-                top: 30,
-              ),
-              child: Text(
-                "User Registration",
-                textAlign: TextAlign.right,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            // Container(
+            //   padding: EdgeInsets.only(
+            //     top: 30,
+            //   ),
+            //   child: Text(
+            //     "User Registration",
+            //     textAlign: TextAlign.right,
+            //     style: TextStyle(
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
             SizedBox(
               height: 20,
             ),
             Container(
                 margin:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 child: AppTextfield(
                   icon: Icons.person_outlined,
                   hint: "First Name",

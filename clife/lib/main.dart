@@ -42,6 +42,10 @@ class MyApp extends StatelessWidget {
         //title: 'Flutter Demo',
         theme: ThemeData(
             primarySwatch: Colors.pink,
+            appBarTheme: AppBarTheme(
+              color: Colors.transparent,
+              brightness: 
+            ),
             textTheme:
                 GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
         home: (login) ? DashboardPage() : IntroPage(),
