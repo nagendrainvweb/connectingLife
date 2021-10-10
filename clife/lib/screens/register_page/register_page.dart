@@ -1,6 +1,8 @@
 import 'package:clife/app_widget/app_textfield.dart';
 import 'package:clife/app_widget/button_widget.dart';
+import 'package:clife/screens/blood_type/blood_type_page.dart';
 import 'package:clife/util/app_color.dart';
+import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -118,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Gender",
                       ),
@@ -133,7 +135,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                 child: RadioListTile(
                                   value: 0,
                                   groupValue: _genderGroupValue,
-                                  
                                   title: Text("Male"),
                                   onChanged: (newValue) => setState(
                                       () => _genderGroupValue = newValue),
@@ -170,7 +171,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                        padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Are you a regular blood donor ?",
                       ),
@@ -215,7 +216,7 @@ class _RegisterPageState extends State<RegisterPage> {
               // SizedBox(
               //   height: 10,
               // ),
- SizedBox(
+              SizedBox(
                 height: 12,
               ),
               Container(
@@ -224,7 +225,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                         padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Smoking",
                       ),
@@ -275,7 +276,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                         padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Alcohol",
                       ),
@@ -326,7 +327,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                       padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Veg/Non Veg",
                       ),
@@ -377,7 +378,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                        padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Text(
                         "Any Medical History",
                       ),
@@ -420,13 +421,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
 
-              SizedBox(height: 30,),
+              SizedBox(
+                height: 30,
+              ),
               ButtonView(
                 buttonText: "Continue",
                 textColor: AppColors.whiteColor,
                 color: AppColors.buttonColor,
-                onPressed: (){
-
+                onPressed: () {
+                  Utility.pushToNext(context, BloodGroupPage());
                 },
               )
             ],
