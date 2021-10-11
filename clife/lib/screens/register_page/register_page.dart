@@ -23,6 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         brightness: Brightness.light,
         iconTheme: IconThemeData(color: AppColors.textColor),
@@ -78,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(height: 12),
               AppTextfield(
                 icon: Icons.calendar_today_outlined,
-                hint: "Date of Birth",
+                hint: "Date of Birth (MM-DD-YYYY)",
               ),
               SizedBox(height: 12),
               AppTextfield(
