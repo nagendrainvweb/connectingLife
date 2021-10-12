@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:clife/screens/dashboard/home_widget.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/utility.dart';
@@ -12,6 +14,7 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+   PageController _myPage = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +47,11 @@ class _DashboardPageState extends State<DashboardPage> {
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+           setState(() {
+                  _myPage.jumpToPage(2);
+                });
+        },
         tooltip: 'Increment',
         child: Icon(
           Icons.bloodtype_outlined,
@@ -66,7 +73,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 Icons.home_outlined,
               ),
               onPressed: () {
-                Utility.pushToNext(context, HomeWidgetPage());
+                 setState(() {
+                  _myPage.jumpToPage(0);
+                });
               },
             ),
             IconButton(
@@ -76,22 +85,12 @@ class _DashboardPageState extends State<DashboardPage> {
                 Icons.person_outlined,
               ),
               onPressed: () {
-                // setState(() {
-                //   _myPage.jumpToPage(1);
-                // });
+                setState(() {
+                  _myPage.jumpToPage(1);
+                });
               },
             ),
-            // Expanded(
-            //   child: IconButton(
-            //     iconSize: 30.0,
-            //     icon: Icon(Icons.bloodtype_outlined,),
-            //     onPressed: () {
-            //       // setState(() {
-            //       //   _myPage.jumpToPage(2);
-            //       // });
-            //     },
-            //   ),
-            // ),
+           
             IconButton(
               iconSize: 25.0,
               padding: EdgeInsets.only(left: 28.0),
@@ -99,9 +98,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 Icons.settings_outlined,
               ),
               onPressed: () {
-                // setState(() {
-                //   _myPage.jumpToPage(2);
-                // });
+                setState(() {
+                  _myPage.jumpToPage(3);
+                });
               },
             ),
             IconButton(
@@ -111,16 +110,48 @@ class _DashboardPageState extends State<DashboardPage> {
                 Icons.notifications_outlined,
               ),
               onPressed: () {
-                // setState(() {
-                //   _myPage.jumpToPage(3);
-                // });
+                setState(() {
+                  _myPage.jumpToPage(4);
+                });
               },
             )
           ],
         ),
       ),
+      body: PageView(
+        controller: _myPage,
+        onPageChanged: (int) {
+          print('Page Changes to index $int');
+        },
+        children: <Widget>[
+          Center(
+            child: Container(
+              child: Text('Empty Body 0'),
+            ),
+          ),
+          Center(
+            child: Container(
+              child: Text('Empty Body 1'),
+            ),
+          ),
+          Center(
+            child: Container(
+              child: Text('Empty Body 2'),
+            ),
+          ),
+          Center(
+            child: Container(
+              child: Text('Empty Body 3'),
+            ),
+          ),
+           Center(
+            child: Container(
+              child: Text('Empty Body 3'),
+            ),
+          ),
+        ],
+        physics:NeverScrollableScrollPhysics(),
+      ),
     );
-    
-    
   }
 }
