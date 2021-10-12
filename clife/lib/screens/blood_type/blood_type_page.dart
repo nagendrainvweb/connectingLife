@@ -1,5 +1,7 @@
 import 'package:clife/app_widget/button_widget.dart';
+import 'package:clife/screens/dashboard/dashboard_page.dart';
 import 'package:clife/util/app_color.dart';
+import 'package:clife/util/utility.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +44,7 @@ class _BloodGroupPageState extends State<BloodGroupPage> {
                   crossAxisCount: 4,
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.9,
+                  childAspectRatio: 0.7,
                 ),
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
@@ -127,7 +129,9 @@ class _BloodGroupPageState extends State<BloodGroupPage> {
           ButtonView(
             buttonText: "Submit",
             color: AppColors.buttonColor,
-            onPressed: () {},
+            onPressed: () {
+              Utility.pushToNext(context, DashboardPage());
+            },
           ),
           const SizedBox(
             height: 20,

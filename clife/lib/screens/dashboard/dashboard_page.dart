@@ -1,3 +1,7 @@
+import 'package:clife/screens/dashboard/home_widget.dart';
+import 'package:clife/util/app_color.dart';
+import 'package:clife/util/utility.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -12,11 +16,111 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dashboard"),
+        automaticallyImplyLeading: false,
+        title: Text(
+          "Dashboard",
+          style: TextStyle(
+            color: AppColors.textColor,
+          ),
+        ),
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.location_on_outlined,
+            color: AppColors.mainColor,
+          ),
+        ),
+        titleSpacing: 0,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.menu_outlined,
+              color: AppColors.textColor,
+            ),
+          ),
+        ],
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-      body: Center(
-        child: Text("Dashboard"),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        tooltip: 'Increment',
+        child: Icon(
+          Icons.bloodtype_outlined,
+        ),
+        elevation: 2.0,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        //  color: Colors.blueGrey,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+              iconSize: 25.0,
+              padding: EdgeInsets.only(left: 28.0),
+              icon: Icon(
+                Icons.home_outlined,
+              ),
+              onPressed: () {
+                Utility.pushToNext(context, HomeWidgetPage());
+              },
+            ),
+            IconButton(
+              iconSize: 25.0,
+              padding: EdgeInsets.only(right: 28.0),
+              icon: Icon(
+                Icons.person_outlined,
+              ),
+              onPressed: () {
+                // setState(() {
+                //   _myPage.jumpToPage(1);
+                // });
+              },
+            ),
+            // Expanded(
+            //   child: IconButton(
+            //     iconSize: 30.0,
+            //     icon: Icon(Icons.bloodtype_outlined,),
+            //     onPressed: () {
+            //       // setState(() {
+            //       //   _myPage.jumpToPage(2);
+            //       // });
+            //     },
+            //   ),
+            // ),
+            IconButton(
+              iconSize: 25.0,
+              padding: EdgeInsets.only(left: 28.0),
+              icon: Icon(
+                Icons.settings_outlined,
+              ),
+              onPressed: () {
+                // setState(() {
+                //   _myPage.jumpToPage(2);
+                // });
+              },
+            ),
+            IconButton(
+              iconSize: 25.0,
+              padding: EdgeInsets.only(right: 28.0),
+              icon: Icon(
+                Icons.notifications_outlined,
+              ),
+              onPressed: () {
+                // setState(() {
+                //   _myPage.jumpToPage(3);
+                // });
+              },
+            )
+          ],
+        ),
       ),
     );
+    
+    
   }
 }
