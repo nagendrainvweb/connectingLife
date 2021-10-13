@@ -14,6 +14,7 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
    PageController _myPage = PageController(initialPage: 0);
+   int _currentPage=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +71,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(left: 28.0),
               icon: Icon(
                 Icons.home_outlined,
-                color: _myPage.page.toInt() == 0?AppColors.mainColor:AppColors.greyColor,
+                color: _currentPage == 0?AppColors.mainColor:AppColors.greyColor,
               ),
               onPressed: () {
                  setState(() {
@@ -83,7 +84,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(right: 28.0),
               icon: Icon(
                 Icons.person_outlined,
-                color: _myPage.page.toInt() == 1?AppColors.mainColor:AppColors.greyColor,
+                color: _currentPage == 1?AppColors.mainColor:AppColors.greyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -97,7 +98,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(left: 28.0),
               icon: Icon(
                 Icons.settings_outlined,
-                color: _myPage.page.toInt() == 3?AppColors.mainColor:AppColors.greyColor,
+                color: _currentPage == 3?AppColors.mainColor:AppColors.greyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -110,7 +111,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(right: 28.0),
               icon: Icon(
                 Icons.notifications_outlined,
-                color: _myPage.page.toInt() == 4?AppColors.mainColor:AppColors.greyColor,
+                color: _currentPage== 4?AppColors.mainColor:AppColors.greyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -124,7 +125,9 @@ class _DashboardPageState extends State<DashboardPage> {
       body: PageView(
         controller: _myPage,
         onPageChanged: (int) {
-          print('Page Changes to index $int');
+          setState(() {
+            _currentPage=int;
+          });
         },
         children: <Widget>[
           Center(
