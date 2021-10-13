@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:clife/screens/dashboard/home_widget.dart';
 import 'package:clife/util/app_color.dart';
@@ -71,6 +70,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(left: 28.0),
               icon: Icon(
                 Icons.home_outlined,
+                color: _myPage.page.toInt() == 0?AppColors.mainColor:AppColors.greyColor,
               ),
               onPressed: () {
                  setState(() {
@@ -83,6 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(right: 28.0),
               icon: Icon(
                 Icons.person_outlined,
+                color: _myPage.page.toInt() == 1?AppColors.mainColor:AppColors.greyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -96,6 +97,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(left: 28.0),
               icon: Icon(
                 Icons.settings_outlined,
+                color: _myPage.page.toInt() == 3?AppColors.mainColor:AppColors.greyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -108,6 +110,7 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(right: 28.0),
               icon: Icon(
                 Icons.notifications_outlined,
+                color: _myPage.page.toInt() == 4?AppColors.mainColor:AppColors.greyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -126,7 +129,7 @@ class _DashboardPageState extends State<DashboardPage> {
         children: <Widget>[
           Center(
             child: Container(
-              child: Text('Empty Body 0'),
+              child: HomeWidgetPage(),
             ),
           ),
           Center(
