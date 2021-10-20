@@ -22,4 +22,13 @@ class AppColors {
   static final Color grey400 = Colors.grey[400];
   static final Color backgroundColor = Color(0xfff4f8fb);
   static final Color textColor = Color(0xff383838);
+  static final Color gradientColor = Color(0xfff4f8fb);
+  static final Color pinklight = Color(0xfffba2be);
+  static final Color extraLightpinkColor = Color(0xfffddfe9);
+  static final Color yellowLight = Color(0xfff7d059);
+  static final Color extraLightYellowColor = Color(0xfffbefc9);
+  static final Color skyLight = Color(0xff22c59e);
+  static final Color extraSkyLight = Color(0xffcbf5eb);
+  static final Color blueLight = Color(0xffe9e9e9);
+  static final Color extraBlueLight = Color(0xffd3d3d3);
 }
