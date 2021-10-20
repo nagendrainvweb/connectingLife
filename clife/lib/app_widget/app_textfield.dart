@@ -1,22 +1,27 @@
 // import 'package:diamon_assorter/util/app_color.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:stacked/stacked_annotations.dart';
 
 class AppTextfield extends StatelessWidget {
   AppTextfield(
       {Key key,
       this.hint,
       this.icon,
-      this.obsecure,
+      this.obsecure = false,
       this.color,
       this.textColor = AppColors.blackColor,
       this.controller,
       this.keyboardType = TextInputType.name,
       this.errorText,
       this.onChanged,
+      this.enable = true,
+      this.maxLength,
       this.showIcon = false,
+      this.validator,
       this.suffixIcon,
-      this.onIconClicked})
+      this.onIconClicked, this.maxLines})
       : super(key: key);
 
   final String hint;
@@ -28,9 +33,13 @@ class AppTextfield extends StatelessWidget {
   final String errorText;
   final Function onChanged;
   final bool showIcon;
+  final bool enable;
   final IconData suffixIcon;
   final Function onIconClicked;
+  final int maxLength;
   final TextInputType keyboardType;
+  final Function validator;
+  final int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +69,26 @@ class AppTextfield extends StatelessWidget {
             width: 8,
           ),
           Expanded(
-            child: TextField(
+            child: TextFormField(
+              controller: controller,
+              onChanged: onChanged,
+              obscureText: obsecure,
+              keyboardType: keyboardType,
+              enabled: enable,
+              validator: validator,
+              maxLines: maxLines,
+              inputFormatters: maxLength != null
+                  ? [
+                      LengthLimitingTextInputFormatter(maxLength),
+                    ]
+                  : null,
               style: TextStyle(fontSize: 14),
               decoration: InputDecoration(
-                filled: true,
-                border: InputBorder.none,
-                labelText: hint,
-                fillColor: AppColors.whiteColor,
-              ),
+                  filled: true,
+                  border: InputBorder.none,
+                  labelText: hint,
+                  fillColor: AppColors.whiteColor,
+                  errorText: errorText),
             ),
           ),
         ],

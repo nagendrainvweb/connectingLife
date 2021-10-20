@@ -13,6 +13,7 @@ class BasicResponse<T> {
   String pageContent;
   String pageName;
   String token;
+  String otp;
   String image_url;
   T data;
   List<int> hasSubCategories;
@@ -28,6 +29,7 @@ class BasicResponse<T> {
       this.pageName,
       this.pageContent,
       this.cartCount,
+      this.otp,
       this.token,
       this.hasSubCategories,
       this.image_url});
@@ -44,6 +46,7 @@ class BasicResponse<T> {
           pageContent: json["page_content"],
           pageName: json["page_name"],
           isForce: json["isForce"],
+          otp: json["otp"].toString(),
           token: json['token'],
           image_url: json["image_url"],
           data: data,

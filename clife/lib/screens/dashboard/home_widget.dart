@@ -25,7 +25,7 @@ class HomeWidgetPage extends StatelessWidget {
         // SizedBox(height: 10,),
         RichText(
           text: TextSpan(
-            text: 'Donate',
+            text: 'Donate ',
             
             style: TextStyle(
               fontSize: 25,

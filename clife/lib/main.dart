@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
             ),
             textTheme:
                 GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
-        home: (login) ? DashboardPage() : IntroPage(),
+        home: (repo.introDone) ?(login) ?DashboardPage() : LoginPage():IntroPage(),
         routes: routies,
       ),
     );

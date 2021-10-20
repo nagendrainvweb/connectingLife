@@ -23,7 +23,7 @@ class ButtonView extends StatelessWidget {
         vertical: 10,
       ),
       shape: RoundedRectangleBorder(
-          side: BorderSide(color: AppColors.buttonColor),
+          side: BorderSide(color: AppColors.mainDarkColor),
           borderRadius: BorderRadius.circular(10)),
       color: color,
       onPressed: onPressed,

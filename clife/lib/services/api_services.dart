@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:clife/modal/basic_response.dart';
+import 'package:clife/model/user_data.dart';
 import 'package:clife/prefrence_util/Prefs.dart';
 import 'package:clife/services/api_error_exception.dart';
 import 'package:clife/services/urlList.dart';
@@ -12,57 +13,59 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  // Future<BasicResponse<UserData>> registerUser(UserData userData) async {
-  //   try {
-  //     final header = {"Content-Type": "application/json"};
-  //     final body = json.encode(userData.toJson());
-  //     myPrint("body is " + body.toString());
-  //     final request = await http.post(Uri.parse(UrlList.REGISTER),
-  //         body: body, headers: header);
-  //     myPrint("register response : ${request.body.toString()}");
-  //     final jsonResponse = json.decode(request.body);
-  //     if (jsonResponse[Constants.STATUS] == true) {
-  //       UserData userData = new UserData();
-  //       final data = jsonResponse[Constants.DATA];
-  //       if (data != null) {
-  //         userData = _setUserData(data);
-  //         return BasicResponse<UserData>.fromJson(
-  //             json: jsonResponse, data: userData);
-  //       }
-  //     }
-  //     throw ApiErrorException(jsonResponse[Constants.MESSAGE]);
-  //   } on SocketException catch (e) {
-  //     throw ApiErrorException(NO_INTERNET_CONN);
-  //   } on Exception catch (e) {
-  //     myPrint(e.toString());
-  //     // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
-  //     throw ApiErrorException(e.toString());
-  //   }
-  // }
+  get getDefaultHeader => {"Accept": "application/json"};
+  Future<BasicResponse<String>> registerUser(UserData userData) async {
+    try {
+      final header = {"Content-Type": "application/json"};
+      header.addAll(getDefaultHeader);
+      final body = json.encode(userData.toJson());
+      myPrint("body is " + body.toString());
+      final request = await http.post(Uri.parse(UrlList.REGISTER),
+          body: body, headers: header);
+      myPrint("register response : ${request.body.toString()}");
+      final jsonResponse = json.decode(request.body);
+      if (jsonResponse[Constants.STATUS] == Constants.SUCCESS) {
+        final data = jsonResponse[Constants.DATA];
+        // if (data != null) {
+        return BasicResponse<String>.fromJson(
+            json: jsonResponse, data: data["token"]);
+        //  }
+      }
+      throw ApiErrorException(jsonResponse[Constants.MESSAGE]);
+    } on SocketException catch (e) {
+      throw ApiErrorException(NO_INTERNET_CONN);
+    } on Exception catch (e) {
+      myPrint(e.toString());
+      // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
+      throw ApiErrorException(e.toString());
+    }
+  }
 
-  // Future<Map<String, dynamic>> fetchCityState(String pincode) async {
-  //   try {
-  //     myPrint("url is ${UrlList.PINCODE + pincode}");
-  //     final request = await http.get(Uri.parse(UrlList.PINCODE + pincode));
-  //     final jsonResponse = json.decode(request.body);
-  //     myPrint("register response : ${request.body.toString()}");
-  //     final Map<String, dynamic> data = new Map<String, dynamic>();
-  //     if (jsonResponse["success"] == true) {
-  //       final jsonData = jsonResponse['data'];
-  //       data[Constants.CITY] = jsonData["city"];
-  //       data[Constants.STATE] = jsonData['state'];
-  //       return data;
-  //     }
-  //     throw ApiErrorException(jsonResponse['message']);
+  Future<Map<String, dynamic>> fetchCityState(String pincode) async {
+    try {
+      myPrint("url is ${UrlList.PINCODE + pincode}");
+      final request = await http.get(Uri.parse(UrlList.PINCODE + pincode));
+      final jsonResponse = json.decode(request.body);
+      myPrint("register response : ${request.body.toString()}");
+      final Map<String, dynamic> data = new Map<String, dynamic>();
+      if (jsonResponse["status"] == Constants.SUCCESS) {
+        final jsonData = jsonResponse['data'];
+        if (jsonData != null) {
+          data[Constants.CITY] = jsonData[0]["Region"];
+          data[Constants.STATE] = jsonData[0]['State'];
+          return data;
+        }
+      }
+      throw ApiErrorException(jsonResponse['message']);
 
-  //     //  return BasicResponse.fromJson(json: jsonResponse, data: "");
-  //   } on SocketException catch (e) {
-  //     throw ApiErrorException(NO_INTERNET_CONN);
-  //   } on Exception catch (e) {
-  //     // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
-  //     throw ApiErrorException(e.toString());
-  //   }
-  // }
+      //  return BasicResponse.fromJson(json: jsonResponse, data: "");
+    } on SocketException catch (e) {
+      throw ApiErrorException(NO_INTERNET_CONN);
+    } on Exception catch (e) {
+      // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
+      throw ApiErrorException(e.toString());
+    }
+  }
 
   // Future<BasicResponse<List<AgentData>>> fetchAgentList() async {
   //   try {
@@ -163,33 +166,51 @@ class ApiService {
   //   }
   // }
 
-  // Future<BasicResponse<UserData>> loginUser(
-  //     String username, String password) async {
-  //   try {
-  //     final body = {"email": username, "password": password};
-  //     final request = await http.post(Uri.parse(UrlList.LOGIN), body: body);
-  //     myPrint("login response : ${request.body.toString()}");
-  //     final jsonResponse = json.decode(request.body);
-  //     if (jsonResponse[Constants.STATUS] == true) {
-  //       UserData userData = new UserData();
+  Future<BasicResponse<String>> loginUser(String mobileNo) async {
+    try {
+      final fcm_token = await Prefs.fcmToken;
+      final body = {"mobile_no": mobileNo, "fcm_token": fcm_token};
+      final request = await http.post(Uri.parse(UrlList.LOGIN),
+          body: body, headers: getDefaultHeader);
+      myPrint("login response : ${request.body.toString()}");
+      final jsonResponse = json.decode(request.body);
+      if (jsonResponse[Constants.STATUS] == true) {
+        return BasicResponse<String>.fromJson(json: jsonResponse, data: "");
+        // }
+      }
+      throw ApiErrorException(jsonResponse[Constants.MESSAGE]);
 
-  //       final data = jsonResponse[Constants.DATA];
-  //       if (data != null) {
-  //         userData = _setUserData(data);
-  //         return BasicResponse<UserData>.fromJson(
-  //             json: jsonResponse, data: userData);
-  //       }
-  //     }
-  //     throw ApiErrorException(jsonResponse[Constants.MESSAGE]);
+      //  return BasicResponse.fromJson(json: jsonResponse, data: "");
+    } on SocketException catch (e) {
+      throw ApiErrorException(NO_INTERNET_CONN);
+    } on Exception catch (e) {
+      // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
+      throw ApiErrorException(e.toString());
+    }
+  }
 
-  //     //  return BasicResponse.fromJson(json: jsonResponse, data: "");
-  //   } on SocketException catch (e) {
-  //     throw ApiErrorException(NO_INTERNET_CONN);
-  //   } on Exception catch (e) {
-  //     // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
-  //     throw ApiErrorException(e.toString());
-  //   }
-  // }
+  Future<BasicResponse<String>> sendOtp(String mobileNo) async {
+    try {
+      final fcm_token = await Prefs.fcmToken;
+      final body = {"phone": mobileNo, "fcm_token": fcm_token};
+      final request = await http.post(Uri.parse(UrlList.SEND_OTP),
+          body: body, headers: getDefaultHeader);
+      myPrint("login response : ${request.body.toString()}");
+      final jsonResponse = json.decode(request.body);
+      if (jsonResponse[Constants.STATUS] == Constants.SUCCESS) {
+        //  final data = jsonResponse[Constants.DATA];
+        return BasicResponse<String>.fromJson(json: jsonResponse, data: "");
+      }
+      throw ApiErrorException(jsonResponse[Constants.MESSAGE]);
+
+      //  return BasicResponse.fromJson(json: jsonResponse, data: "");
+    } on SocketException catch (e) {
+      throw ApiErrorException(NO_INTERNET_CONN);
+    } on Exception catch (e) {
+      // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
+      throw ApiErrorException(e.toString());
+    }
+  }
 
   // UserData _setUserData(var data) {
   //   final profileData = data['profile'];
@@ -226,34 +247,32 @@ class ApiService {
   //   return userData;
   // }
 
-  // Future<BasicResponse<UserData>> fetchUserDetails() async {
-  //   try {
-  //     final id = await Prefs.userId;
-  //     final body = {"user_id": id};
-  //     final request =
-  //         await http.post(Uri.parse(UrlList.USER_DETAILS), body: body);
-  //     myPrint("userdetails response : ${request.body.toString()}");
-  //     final jsonResponse = json.decode(request.body);
-  //     if (jsonResponse[Constants.STATUS] == true) {
-  //       UserData userData = new UserData();
+  Future<BasicResponse<UserData>> fetchUserDetails() async {
+    try {
+      //final id = await Prefs.userId;
+      //final body = {"user_id": id};
+      final token = await Prefs.token;
+      final request = await http.get(Uri.parse(UrlList.USER_DETAILS+"$token"),
+          headers: getDefaultHeader);
+      myPrint("userdetails response : ${request.body.toString()}");
+      final jsonResponse = json.decode(request.body);
+      if (jsonResponse[Constants.STATUS] == Constants.SUCCESS) {
+        final data = jsonResponse[Constants.DATA];
+        if (data != null) {
+          return BasicResponse<UserData>.fromJson(
+              json: jsonResponse, data: UserData.fromJson(data));
+        }
+      }
+      throw ApiErrorException(jsonResponse[Constants.MESSAGE]);
 
-  //       final data = jsonResponse[Constants.DATA];
-  //       if (data != null) {
-  //         userData = _setUserData(data);
-  //         return BasicResponse<UserData>.fromJson(
-  //             json: jsonResponse, data: userData);
-  //       }
-  //     }
-  //     throw ApiErrorException(jsonResponse[Constants.MESSAGE]);
-
-  //     //  return BasicResponse.fromJson(json: jsonResponse, data: "");
-  //   } on SocketException catch (e) {
-  //     throw ApiErrorException(NO_INTERNET_CONN);
-  //   } on Exception catch (e) {
-  //     // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
-  //     throw ApiErrorException(e.toString());
-  //   }
-  // }
+      //  return BasicResponse.fromJson(json: jsonResponse, data: "");
+    } on SocketException catch (e) {
+      throw ApiErrorException(NO_INTERNET_CONN);
+    } on Exception catch (e) {
+      // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
+      throw ApiErrorException(e.toString());
+    }
+  }
 
   // Future<BasicResponse<String>> forgortPassword(String email) async {
   //   try {
@@ -316,7 +335,6 @@ class ApiService {
   //     String oldPass, String newPass) async {
   //   try {
   //     final userId = await Prefs.userId;
-     
 
   //     final body = {
   //       "user_id": userId,
