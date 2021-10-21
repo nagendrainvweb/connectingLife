@@ -145,26 +145,31 @@ class HomeWidgetPage extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.symmetric(
-              horizontal: 30,
+              horizontal: MediaQuery.of(context).size.width *0.1,
             ),
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    HomeWidgetHelp(
-                      icons: Icons.search_outlined,
-                      title: "Find A Doctor",
-                      count: "23.5k",
-                      iconColor: AppColors.pinklight,
-                      iconBackgroundColor: AppColors.extraLightpinkColor,
+                    Expanded(
+                      child: HomeWidgetHelp(
+                        icons: Icons.search_outlined,
+                        title: "Find A Donor",
+                        count: "23.5k",
+                        iconColor: AppColors.pinklight,
+                        iconBackgroundColor: AppColors.extraLightpinkColor,
+                      ),
                     ),
-                    HomeWidgetHelp(
-                      icons: Icons.notifications_outlined,
-                      title: "Blood Request",
-                      count: "500k",
-                      iconColor: AppColors.yellowLight,
-                      iconBackgroundColor: AppColors.extraLightYellowColor,
+                    SizedBox(width: 10,),
+                    Expanded(
+                      child: HomeWidgetHelp(
+                        icons: Icons.notifications_outlined,
+                        title: "Blood Request",
+                        count: "500k",
+                        iconColor: AppColors.yellowLight,
+                        iconBackgroundColor: AppColors.extraLightYellowColor,
+                      ),
                     ),
                   ],
                 ),
@@ -172,21 +177,26 @@ class HomeWidgetPage extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    HomeWidgetHelp(
-                      icons: Icons.bloodtype,
-                      title: "Blood Bank",
-                      count: "Map",
-                      iconColor: AppColors.skyLight,
-                      iconBackgroundColor: AppColors.extraSkyLight,
+                    Expanded(
+                      child: HomeWidgetHelp(
+                        icons: Icons.bloodtype,
+                        title: "Blood Bank",
+                        count: "Map",
+                        iconColor: AppColors.skyLight,
+                        iconBackgroundColor: AppColors.extraSkyLight,
+                      ),
                     ),
-                    HomeWidgetHelp(
-                      icons: Icons.settings_outlined,
-                      title: "Other",
-                      count: "More",
-                      iconColor: AppColors.blackLight,
-                      iconBackgroundColor: AppColors.extraBlueLight,
+                     SizedBox(width: 10,),
+                    Expanded(
+                      child: HomeWidgetHelp(
+                        icons: Icons.settings_outlined,
+                        title: "Other",
+                        count: "More",
+                        iconColor: AppColors.blackLight,
+                        iconBackgroundColor: AppColors.extraBlueLight,
+                      ),
                     ),
                   ],
                 ),

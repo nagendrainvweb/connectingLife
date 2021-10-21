@@ -21,7 +21,7 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          "Dashboard",
+          "",
           style: TextStyle(
             color: AppColors.textColor,
           ),
