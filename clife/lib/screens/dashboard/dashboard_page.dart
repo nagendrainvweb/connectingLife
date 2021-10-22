@@ -1,5 +1,6 @@
-
 import 'package:clife/screens/dashboard/home_widget.dart';
+import 'package:clife/screens/dashboard/profile_widget.dart';
+import 'package:clife/screens/post/post_page.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/utility.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,8 +14,8 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-   PageController _myPage = PageController(initialPage: 0);
-   int _currentPage=0;
+  PageController _myPage = PageController(initialPage: 0);
+  int _currentPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,13 +49,18 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-           setState(() {
-                  _myPage.jumpToPage(2);
-                });
+          setState(() {
+            _myPage.jumpToPage(2);
+          });
         },
         tooltip: 'Increment',
-        child: Icon(
-          Icons.bloodtype_outlined,
+        child: InkWell(
+          onTap: () {
+            Utility.pushToNext(context, PostPage());
+          },
+          child: Icon(
+            Icons.bloodtype_outlined,
+          ),
         ),
         elevation: 2.0,
       ),
@@ -71,10 +77,12 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(left: 28.0),
               icon: Icon(
                 Icons.home_outlined,
-                color: _currentPage == 0?AppColors.mainColor:AppColors.greyColor,
+                color: _currentPage == 0
+                    ? AppColors.mainColor
+                    : AppColors.greyColor,
               ),
               onPressed: () {
-                 setState(() {
+                setState(() {
                   _myPage.jumpToPage(0);
                 });
               },
@@ -84,21 +92,25 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(right: 28.0),
               icon: Icon(
                 Icons.person_outlined,
-                color: _currentPage == 1?AppColors.mainColor:AppColors.greyColor,
+                color: _currentPage == 1
+                    ? AppColors.mainColor
+                    : AppColors.greyColor,
               ),
               onPressed: () {
+                Utility.pushToNext(context, ProfileWidget());
                 setState(() {
                   _myPage.jumpToPage(1);
                 });
               },
             ),
-           
             IconButton(
               iconSize: 25.0,
               padding: EdgeInsets.only(left: 28.0),
               icon: Icon(
                 Icons.settings_outlined,
-                color: _currentPage == 3?AppColors.mainColor:AppColors.greyColor,
+                color: _currentPage == 3
+                    ? AppColors.mainColor
+                    : AppColors.greyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -111,7 +123,9 @@ class _DashboardPageState extends State<DashboardPage> {
               padding: EdgeInsets.only(right: 28.0),
               icon: Icon(
                 Icons.notifications_outlined,
-                color: _currentPage== 4?AppColors.mainColor:AppColors.greyColor,
+                color: _currentPage == 4
+                    ? AppColors.mainColor
+                    : AppColors.greyColor,
               ),
               onPressed: () {
                 setState(() {
@@ -126,7 +140,7 @@ class _DashboardPageState extends State<DashboardPage> {
         controller: _myPage,
         onPageChanged: (int) {
           setState(() {
-            _currentPage=int;
+            _currentPage = int;
           });
         },
         children: <Widget>[
@@ -137,12 +151,12 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           Center(
             child: Container(
-              child: Text('Empty Body 1'),
+              child: ProfileWidget(),
             ),
           ),
           Center(
             child: Container(
-              child: Text('Empty Body 2'),
+              child: PostPage(),
             ),
           ),
           Center(
@@ -150,13 +164,13 @@ class _DashboardPageState extends State<DashboardPage> {
               child: Text('Empty Body 3'),
             ),
           ),
-           Center(
+          Center(
             child: Container(
               child: Text('Empty Body 3'),
             ),
           ),
         ],
-        physics:NeverScrollableScrollPhysics(),
+        physics: NeverScrollableScrollPhysics(),
       ),
     );
   }
