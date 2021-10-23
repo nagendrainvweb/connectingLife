@@ -18,7 +18,38 @@ class HomeWidgetPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "GIVE THE GIFT OF LIFE",
+                "GIVE THE GIFT OF LIFE",      // child: GestureDetector(
+      //   onTap: onClick,
+      //   child: Container(
+      //     decoration: BoxDecoration(
+      //         borderRadius: BorderRadius.circular(12),
+      //         border: Border.all(color: AppColors.grey500, width: 1)),
+      //     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      //     child: Row(
+      //       children: [
+      //         Icon(
+      //           iconData,
+      //           color: AppColors.grey600,
+      //         ),
+      //         SizedBox(
+      //           width: 12,
+      //         ),
+      //         Expanded(
+      //             child: Text(
+  
+      //           text,
+      //           textScaleFactor: 1.1,
+      //           style: TextStyle(
+      //               color: AppColors.grey700, fontWeight: FontWeight.bold),
+      //         )),
+      //         Icon(
+      //           Icons.chevron_right_outlined,
+      //           color: AppColors.grey600,
+      //         )
+      //       ],
+      //     ),
+      //   ),
+      // ),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

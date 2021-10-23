@@ -2,7 +2,7 @@ import 'package:clife/util/app_color.dart';
 import 'package:flutter/material.dart';
 
 class ProfileWidget extends StatelessWidget {
-  
+  const ProfileWidget({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -97,36 +97,35 @@ class ProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: InkWell(
-        onTap: onClick,
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.grey500, width: 1)),
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          child: Row(
-            children: [
-              Icon(
-                iconData,
-                color: AppColors.grey600,
-              ),
-              SizedBox(
-                width: 12,
-              ),
-              Expanded(
-                  child: Text(
-                text,
-                textScaleFactor: 1.1,
-                style: TextStyle(
-                    color: AppColors.grey700, fontWeight: FontWeight.bold),
-              )),
-              Icon(
-                Icons.chevron_right_outlined,
-                color: AppColors.grey600,
-              )
-            ],
-          ),
+    return InkWell(
+      onTap: onClick,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppColors.grey500, width: 1)),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        child: Row(
+          children: [
+            Icon(
+              iconData,
+              color: AppColors.grey600,
+            ),
+            SizedBox(
+              width: 12,
+            ),
+            Expanded(
+                child: Text(
+  
+              text,
+              textScaleFactor: 1.1,
+              style: TextStyle(
+                  color: AppColors.grey700, fontWeight: FontWeight.bold),
+            )),
+            Icon(
+              Icons.chevron_right_outlined,
+              color: AppColors.grey600,
+            )
+          ],
         ),
       ),
     );

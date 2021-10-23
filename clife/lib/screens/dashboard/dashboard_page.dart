@@ -53,7 +53,7 @@ class _DashboardPageState extends State<DashboardPage> {
             _myPage.jumpToPage(2);
           });
         },
-        tooltip: 'Increment',
+        tooltip: 'Post',
         child: InkWell(
           onTap: () {
             Utility.pushToNext(context, PostPage());
@@ -97,7 +97,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     : AppColors.greyColor,
               ),
               onPressed: () {
-                Utility.pushToNext(context, ProfileWidget());
+               // Utility.pushToNext(context, ProfileWidget());
                 setState(() {
                   _myPage.jumpToPage(1);
                 });
@@ -149,10 +149,8 @@ class _DashboardPageState extends State<DashboardPage> {
               child: HomeWidgetPage(),
             ),
           ),
-          Center(
-            child: Container(
-              child: ProfileWidget(),
-            ),
+          Container(
+            child: ProfileWidget(),
           ),
           Center(
             child: Container(
