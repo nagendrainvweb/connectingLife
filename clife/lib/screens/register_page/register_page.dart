@@ -283,10 +283,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       ],
                     ),
                   ),
-
-                  // SizedBox(
-                  //   height: 10,
-                  // ),
                   SizedBox(
                     height: 20,
                   ),
