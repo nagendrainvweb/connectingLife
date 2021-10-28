@@ -27,8 +27,7 @@ class _RequestPageState extends State<RequestPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-            color: AppColors.whiteColor,
-
+              color: AppColors.whiteColor,
             ),
             child: Column(
               children: [
@@ -37,19 +36,96 @@ class _RequestPageState extends State<RequestPage> {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        border: Border.all(color: AppColors.mainColor,width: 1),
+                        border:
+                            Border.all(color: AppColors.mainColor, width: 1),
                         borderRadius: BorderRadius.circular(14),
-                        
                       ),
-                      child: SvgPicture.asset(
-                        AppImages.blood_fill_drop,
-                        height: 70,
-                        width: 70,
-                        color: AppColors.redAccent,
+                      child: Stack(
+                        children: [
+                          SvgPicture.asset(
+                            AppImages.blood_fill_drop,
+                            height: 70,
+                            width: 70,
+                            color: AppColors.redAccent,
+                          ),
+                          Container(
+                            height: 70,
+                            width: 70,
+                            child: Center(
+                              child: Text(
+                                "A+",
+                                style: TextStyle(color: AppColors.whiteColor,fontWeight: FontWeight.bold,),
+                                ),
+                                ),
+                                ),
+                        ],
                       ),
-                    )
+                    ),
+                    Column(
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                            right: 90.0,
+                          ),
+                          child:Row(
+                            children: [
+                              Text("Ram",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                              ),
+                            ],
+                          ) ,
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            left: 8,
+                          ),
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 5,
+                            ),
+                            child: Column(
+                              children: [
+                                Text("Type",),
+                                // Text("Blood",),
+                                // Text("Plasma",),
+                                
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 5,
+                            ),
+                            child: Column(
+                              children: [
+                                Text("Date"),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 5,
+                            ),
+                            child: Column(
+                              children: [
+                                Text("Location"),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                      ],
+                    ),
+                    
                   ],
-                )
+                ),
               ],
             ),
           ),
