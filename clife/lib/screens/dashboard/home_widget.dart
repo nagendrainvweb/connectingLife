@@ -1,6 +1,10 @@
 import 'package:clife/app_widget/home_widget_helper.dart';
+import 'package:clife/screens/request_page/request_list_page.dart';
 import 'package:clife/util/app_color.dart';
+import 'package:clife/util/app_image.dart';
+import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeWidgetPage extends StatelessWidget {
   const HomeWidgetPage({Key key}) : super(key: key);
@@ -18,38 +22,38 @@ class HomeWidgetPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "GIVE THE GIFT OF LIFE",      // child: GestureDetector(
-      //   onTap: onClick,
-      //   child: Container(
-      //     decoration: BoxDecoration(
-      //         borderRadius: BorderRadius.circular(12),
-      //         border: Border.all(color: AppColors.grey500, width: 1)),
-      //     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-      //     child: Row(
-      //       children: [
-      //         Icon(
-      //           iconData,
-      //           color: AppColors.grey600,
-      //         ),
-      //         SizedBox(
-      //           width: 12,
-      //         ),
-      //         Expanded(
-      //             child: Text(
-  
-      //           text,
-      //           textScaleFactor: 1.1,
-      //           style: TextStyle(
-      //               color: AppColors.grey700, fontWeight: FontWeight.bold),
-      //         )),
-      //         Icon(
-      //           Icons.chevron_right_outlined,
-      //           color: AppColors.grey600,
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // ),
+                "GIVE THE GIFT OF LIFE", // child: GestureDetector(
+                //   onTap: onClick,
+                //   child: Container(
+                //     decoration: BoxDecoration(
+                //         borderRadius: BorderRadius.circular(12),
+                //         border: Border.all(color: AppColors.grey500, width: 1)),
+                //     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                //     child: Row(
+                //       children: [
+                //         Icon(
+                //           iconData,
+                //           color: AppColors.grey600,
+                //         ),
+                //         SizedBox(
+                //           width: 12,
+                //         ),
+                //         Expanded(
+                //             child: Text(
+
+                //           text,
+                //           textScaleFactor: 1.1,
+                //           style: TextStyle(
+                //               color: AppColors.grey700, fontWeight: FontWeight.bold),
+                //         )),
+                //         Icon(
+                //           Icons.chevron_right_outlined,
+                //           color: AppColors.grey600,
+                //         )
+                //       ],
+                //     ),
+                //   ),
+                // ),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -176,30 +180,39 @@ class HomeWidgetPage extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width *0.1,
+              horizontal: MediaQuery.of(context).size.width * 0.1,
             ),
             child: Column(
               children: [
                 Row(
-                //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
                       child: HomeWidgetHelp(
-                        icons: Icons.search_outlined,
+                        icon: Icon(
+                          Icons.search_outlined,
+                          color: AppColors.pinklight,
+                        ),
                         title: "Find A Donor",
                         count: "23.5k",
                         iconColor: AppColors.pinklight,
                         iconBackgroundColor: AppColors.extraLightpinkColor,
                       ),
                     ),
-                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Expanded(
                       child: HomeWidgetHelp(
-                        icons: Icons.notifications_outlined,
+                        icon: Icon(Icons.notifications_outlined,
+                            color: AppColors.yellowLight),
                         title: "Blood Request",
                         count: "500k",
                         iconColor: AppColors.yellowLight,
                         iconBackgroundColor: AppColors.extraLightYellowColor,
+                        onClick: () {
+                          Utility.pushToNext(context, RequestPage());
+                        },
                       ),
                     ),
                   ],
@@ -208,21 +221,25 @@ class HomeWidgetPage extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
-                //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
                       child: HomeWidgetHelp(
-                        icons: Icons.bloodtype,
+                        icon: Icon(Icons.bloodtype_outlined,
+                            color: AppColors.skyLight),
                         title: "Blood Bank",
                         count: "Map",
                         iconColor: AppColors.skyLight,
                         iconBackgroundColor: AppColors.extraSkyLight,
                       ),
                     ),
-                     SizedBox(width: 10,),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Expanded(
                       child: HomeWidgetHelp(
-                        icons: Icons.settings_outlined,
+                        icon: Icon(Icons.settings_outlined,
+                            color: AppColors.blackLight),
                         title: "Other",
                         count: "More",
                         iconColor: AppColors.blackLight,

@@ -2,9 +2,11 @@ import 'package:clife/screens/dashboard/home_widget.dart';
 import 'package:clife/screens/dashboard/profile_widget.dart';
 import 'package:clife/screens/post/post_page.dart';
 import 'package:clife/util/app_color.dart';
+import 'package:clife/util/app_image.dart';
 import 'package:clife/util/utility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key key}) : super(key: key);
@@ -19,6 +21,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
@@ -27,6 +30,7 @@ class _DashboardPageState extends State<DashboardPage> {
             color: AppColors.textColor,
           ),
         ),
+        
         leading: IconButton(
           onPressed: () {},
           icon: Icon(
@@ -58,11 +62,12 @@ class _DashboardPageState extends State<DashboardPage> {
           onTap: () {
             Utility.pushToNext(context, PostPage());
           },
-          child: Icon(
-            Icons.bloodtype_outlined,
+          child: SvgPicture.asset(
+            AppImages.blood_drop,
+            color: AppColors.whiteColor,
           ),
         ),
-        elevation: 2.0,
+       // elevation: 2.0,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(

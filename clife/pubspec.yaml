@@ -65,7 +65,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  image_picker: ^0.8.4+3
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -89,6 +88,9 @@ flutter:
     - assets/logo.png
     - assets/intro.jpg
     - assets/avator_man.svg
+    - assets/water_drop_black_24dp.svg
+    - assets/water_drop_fill_black_24dp.svg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
