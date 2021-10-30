@@ -193,10 +193,13 @@ class HomeWidgetPage extends StatelessWidget {
                           Icons.search_outlined,
                           color: AppColors.pinklight,
                         ),
-                        title: "Find A Donor",
+                        title: "My Request",
                         count: "23.5k",
                         iconColor: AppColors.pinklight,
                         iconBackgroundColor: AppColors.extraLightpinkColor,
+                        onClick: () {
+                          Utility.pushToNext(context, RequestPage());
+                        },
                       ),
                     ),
                     SizedBox(

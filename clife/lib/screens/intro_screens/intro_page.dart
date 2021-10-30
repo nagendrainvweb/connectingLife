@@ -83,23 +83,23 @@ class _IntroPageState extends State<IntroPage> {
         ),
         pages: [
           PageViewModel(
-            title: "Find Donators",
+            title: "Search",
             body:
-                "Dramatically unleash cutting-edge vortals before maintainable platforms.",
+                "Search for Blood, Platelets Donars across the globe.",
             image: _buildImage('intro.jpg'),
             decoration: pageDecoration,
           ),
           PageViewModel(
-            title: "Testing",
+            title: "Upload",
             body:
-                "Dramatically unleash cutting-edge vortals before maintainable platforms.",
+                "Upload a Requirement for Blood, Platelets.",
             image: _buildImage('intro.jpg'),
             decoration: pageDecoration,
           ),
           PageViewModel(
-            title: "Donated",
+            title: "Connect",
             body:
-                "Dramatically unleash cutting-edge vortals before maintainable platforms.",
+                "Connect hassle free with potential Donors across the globe.",
             image: _buildImage('intro.jpg'),
             decoration: pageDecoration,
           ),

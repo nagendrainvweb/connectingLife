@@ -13,44 +13,42 @@ class RequestPage extends StatefulWidget {
 }
 
 class _RequestPageState extends State<RequestPage> {
-  List<Widget> _tabs = [
-    Center(child: Text('You have selected the car !!!')),
-    Center(child: Text('Do you like train?'))
-  ];
+  // List<Widget> _tabs = [
+  //   Center(child: Text('You have selected the car !!!')),
+  //   Center(child: Text('Do you like train?'))
+  // ];
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: MyAppBar(
           title: "Request",
         ),
         body: Column(
           children: [
-            TabBar(
-              labelColor: Colors.black,
-              tabs: [
-                Tab(
-                  text: "Received Request",
-                ),
-                Tab(
-                  text: "My Request",
+            // TabBar(
+            //   labelColor: Colors.black,
+            //   tabs: [
+            //     Tab(
+            //       text: "Received Request",
+            //     ),
+            //     Tab(
+            //       text: "My Request",
                   
-                ),
-              ],
-            ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  RequestTabWidget(),
-                  RequestTabWidget(),
-                ],
-              ),
-            ),
+            //     ),
+            //   ],
+            // ),
+            // Expanded(
+            //   child: TabBarView(
+            //     children: [
+            //       RequestTabWidget(),
+            //       RequestTabWidget(),
+            //     ],
+            //   ),
+            // ),
+            Expanded(child: RequestTabWidget()),
           ],
         ),
-      ),
     );
   }
 }
