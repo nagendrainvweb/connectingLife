@@ -187,6 +187,7 @@ class _RequestPageState extends State<RequestPage> {
                                       "Confirm",
                                       "Are you sure you want to accept request?",
                                       "Yes", () {
+                                    Navigator.pop(context);
                                     showModalBottomSheet(
                                         context: context,
                                         builder: (context) {
@@ -210,40 +211,30 @@ class _RequestPageState extends State<RequestPage> {
                                                       padding:
                                                           const EdgeInsets.all(
                                                               5),
-                                                      decoration: BoxDecoration(
-                                                        // border:
-                                                        //     Border.all(color: AppColors.mainColor, width: 1),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12),
-                                                        color: AppColors
-                                                            .redAccent
-                                                            .withOpacity(0.6),
-                                                      ),
                                                       child: Stack(
                                                         children: [
                                                           SvgPicture.asset(
                                                             AppImages
                                                                 .blood_fill_drop,
-                                                            height: 35,
-                                                            width: 35,
+                                                            height: 65,
+                                                            width: 65,
                                                             color: AppColors
                                                                 .redAccent,
                                                           ),
                                                           Container(
-                                                            height: 35,
-                                                            width: 35,
+                                                            height: 65,
+                                                            width: 65,
                                                             child: Center(
                                                               child: Text(
                                                                 "A+",
                                                                 style:
                                                                     TextStyle(
                                                                   color: AppColors
-                                                                      .mainColor,
+                                                                      .whiteColor,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .bold,
-                                                                  fontSize: 10,
+                                                                  fontSize: 15,
                                                                 ),
                                                               ),
                                                             ),
@@ -254,9 +245,12 @@ class _RequestPageState extends State<RequestPage> {
                                                   ],
                                                 ),
                                               ),
-                                              SizedBox(height: 10,),
+                                              SizedBox(
+                                                height: 8,
+                                              ),
                                               Row(
-                                                mainAxisAlignment:MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     "Ram",
@@ -264,14 +258,18 @@ class _RequestPageState extends State<RequestPage> {
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
+                                                      color: AppColors.grey700,
                                                       fontSize: 14,
                                                     ),
                                                   ),
                                                 ],
                                               ),
-                                              SizedBox(height: 5,),
-                                               Row(
-                                                mainAxisAlignment:MainAxisAlignment.center,
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Text(
                                                     "Age",
@@ -279,10 +277,251 @@ class _RequestPageState extends State<RequestPage> {
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: 14,
+                                                      color: AppColors.grey600,
+                                                      fontSize: 12,
                                                     ),
                                                   ),
                                                 ],
+                                              ),
+                                              SizedBox(
+                                                height: 5,
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 20,
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          "Type",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 14,
+                                                            color: AppColors
+                                                                .grey500,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          ":  Blood",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          "Liter",
+                                                          // textAlign: TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 14,
+                                                            color: AppColors
+                                                                .grey500,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          ":  2",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          "Hospital",
+                                                          // textAlign: TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 14,
+                                                            color: AppColors
+                                                                .grey500,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          ":  Shiva Ji",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          "Address",
+                                                          // textAlign: TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 14,
+                                                            color: AppColors
+                                                                .grey500,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          ":  Malad AppPada (e)",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          "Contact Person Name",
+                                                          // textAlign: TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 14,
+                                                            color: AppColors
+                                                                .grey500,
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          ":  Ram",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(height: 10,),
+                                                    Row(
+                                                      children: [
+                                                        Container(
+                                                          padding:
+                                                        EdgeInsets.symmetric(
+                                                      horizontal: 18,
+                                                      vertical: 6,
+                                                    ),
+                                                          decoration: BoxDecoration(
+                                                      color:
+                                                          AppColors.mainColor,
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(6),
+                                                    ),
+                                                          child: Text(
+                                                            "Call",
+                                                            style: TextStyle(
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: AppColors
+                                                                  .whiteColor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Container(
+                                                          padding:
+                                                        EdgeInsets.symmetric(
+                                                      horizontal: 18,
+                                                      vertical: 6,
+                                                    ),
+                                                    // margin: EdgeInsets.symmetric(horizontal:10,),
+                                                          decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.greenAccent,
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(6),
+                                                    ),
+                                                          child: Text(
+                                                            "WhatsApp",
+                                                            style: TextStyle(
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: AppColors
+                                                                  .whiteColor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Container(
+                                                          padding:
+                                                        EdgeInsets.symmetric(
+                                                      horizontal: 18,
+                                                      vertical: 6,
+                                                    ),
+                                                          decoration: BoxDecoration(
+                                                      color:
+                                                          AppColors.buttonColor,
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(6),
+                                                    ),
+                                                          child: Text(
+                                                            "Share",
+                                                            style: TextStyle(
+                                                              fontSize: 10,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              color: AppColors
+                                                                  .whiteColor,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           );
