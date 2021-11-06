@@ -14,9 +14,6 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  String _dropDownValue;
-  String _genderValue;
-  String _donationTypeValue;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<PostViewModel>.reactive(
@@ -43,72 +40,19 @@ class _PostPageState extends State<PostPage> {
             ),
             child: Column(
               children: [
-                Container(
-                  decoration:
-                      BoxDecoration(color: AppColors.whiteColor, boxShadow: [
-                    BoxShadow(
-                        color: AppColors.grey200,
-                        blurRadius: 5.0,
-                        spreadRadius: 3.0),
-                  ]),
-                  padding: const EdgeInsets.symmetric(
-                      //  horizontal: 10,
-                      vertical: 3),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Icon(
-                          Icons.bloodtype_outlined,
-                          color: AppColors.mainColor,
-                          size: 20,
-                        ),
-                      ),
-                      Container(
-                        height: 30,
-                        width: 1,
-                        color: AppColors.grey300,
-                      ),
-                      const SizedBox(
-                        width: 18,
-                      ),
-                      Expanded(
-                        child: DropdownButton(
-                          hint: _donationTypeValue == null
-                              ? Text('Donation Type')
-                              : Text(
-                                  _donationTypeValue,
-                                  style: TextStyle(color: AppColors.mainColor),
-                                ),
-                          isExpanded: true,
-                          underline: Container(),
-                          iconSize: 30.0,
-                          style: TextStyle(color: AppColors.mainColor),
-                          items: [
-                           'Blood',
-                           'Platelete',
-                           'Plasma',
-                          ].map(
-                            (val) {
-                              return DropdownMenuItem<String>(
-                                value: val,
-                                child: Text(val),
-                              );
-                            },
-                          ).toList(),
-                          onChanged: (val) {
-                            setState(
-                              () {
-                                _donationTypeValue = val;
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                AppDropdownWidget(
+                  title: "Donation Type",
+                  icon: Icons.security_outlined,
+                  item: ["Blood", "Platelete", "Plasma"],
+                  chooseValue: model.donationTypeValue,
+                  onChanged: (String value) {
+                    model.donationTypeValue = value;
+                    model.notifyListeners();
+                  },
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 AppTextfield(
                   controller: model.nameController,
                   icon: Icons.person_outlined,
@@ -129,139 +73,37 @@ class _PostPageState extends State<PostPage> {
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  decoration:
-                      BoxDecoration(color: AppColors.whiteColor, boxShadow: [
-                    BoxShadow(
-                        color: AppColors.grey200,
-                        blurRadius: 5.0,
-                        spreadRadius: 3.0),
-                  ]),
-                  padding: const EdgeInsets.symmetric(
-                      //  horizontal: 10,
-                      vertical: 3),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Icon(
-                          Icons.person_outlined,
-                          color: AppColors.mainColor,
-                          size: 20,
-                        ),
-                      ),
-                      Container(
-                        height: 30,
-                        width: 1,
-                        color: AppColors.grey300,
-                      ),
-                      const SizedBox(
-                        width: 18,
-                      ),
-                      Expanded(
-                        child: DropdownButton(
-                          hint: _genderValue == null
-                              ? Text('Gender')
-                              : Text(
-                                  _genderValue,
-                                  style: TextStyle(color: AppColors.mainColor),
-                                ),
-                          isExpanded: true,
-                          underline: Container(),
-                          iconSize: 30.0,
-                          style: TextStyle(color: AppColors.mainColor),
-                          items: ['Male', 'female'].map(
-                            (val) {
-                              return DropdownMenuItem<String>(
-                                value: val,
-                                child: Text(val),
-                              );
-                            },
-                          ).toList(),
-                          onChanged: (val) {
-                            setState(
-                              () {
-                                _genderValue = val;
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                AppDropdownWidget(
+                  icon: Icons.person_outline,
+                  title: "Gender",
+                  item: ['Male', 'female'],
+                  chooseValue: model.donationTypeValue,
+                  onChanged: (String val) {
+                    model.genderValue = val;
+                    model.notifyListeners();
+                  },
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                Container(
-                  decoration:
-                      BoxDecoration(color: AppColors.whiteColor, boxShadow: [
-                    BoxShadow(
-                        color: AppColors.grey200,
-                        blurRadius: 5.0,
-                        spreadRadius: 3.0),
-                  ]),
-                  padding: const EdgeInsets.symmetric(
-                      //  horizontal: 10,
-                      vertical: 3),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Icon(
-                          Icons.bloodtype_outlined,
-                          color: AppColors.mainColor,
-                          size: 20,
-                        ),
-                      ),
-                      Container(
-                        height: 30,
-                        width: 1,
-                        color: AppColors.grey300,
-                      ),
-                      const SizedBox(
-                        width: 18,
-                      ),
-                      Expanded(
-                        child: DropdownButton(
-                          hint: _dropDownValue == null
-                              ? Text('Blood Group')
-                              : Text(
-                                  _dropDownValue,
-                                  style: TextStyle(color: AppColors.mainColor),
-                                ),
-                          isExpanded: true,
-                          underline: Container(),
-                          iconSize: 30.0,
-                          style: TextStyle(color: AppColors.mainColor),
-                          items: [
-                            'A Positive (A+)',
-                            'O Positive (O)+',
-                            'B Positive (B+)',
-                            'AB Positive (AB+)',
-                            'A Negative (A-)',
-                            'O Negative (O-)',
-                            'B Negative (B-)',
-                            'AB Negative (AB-)',
-                          ].map(
-                            (val) {
-                              return DropdownMenuItem<String>(
-                                value: val,
-                                child: Text(val),
-                              );
-                            },
-                          ).toList(),
-                          onChanged: (val) {
-                            setState(
-                              () {
-                                _dropDownValue = val;
-                              },
-                            );
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                AppDropdownWidget(
+                  title: "Blood Group",
+                  icon: Icons.bloodtype_outlined,
+                  item: [
+                    'A Positive (A+)',
+                    'O Positive (O)+',
+                    'B Positive (B+)',
+                    'AB Positive (AB+)',
+                    'A Negative (A-)',
+                    'O Negative (O-)',
+                    'B Negative (B-)',
+                    'AB Negative (AB-)',
+                  ],
+                  chooseValue: model.dropDownValue,
+                  onChanged: (String val) {
+                    model.dropDownValue = val;
+                    model.notifyListeners();
+                  },
                 ),
                 SizedBox(
                   height: 10,
@@ -318,6 +160,7 @@ class _PostPageState extends State<PostPage> {
                   controller: model.stateController,
                   icon: Icons.location_city_outlined,
                   hint: "State",
+                  enable: false,
                   keyboardType: TextInputType.name,
                   obsecure: false,
                 ),
@@ -325,17 +168,18 @@ class _PostPageState extends State<PostPage> {
                   height: 10,
                 ),
                 AppTextfield(
-                  controller: model.countryController,
+                  controller: model.cityController,
                   icon: Icons.location_city_outlined,
-                  hint: "Country",
+                  hint: "City",
                   keyboardType: TextInputType.name,
                   obsecure: false,
+                  enable: false,
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 AppTextfield(
-                  controller:model.contactPersonController,
+                  controller: model.contactPersonController,
                   icon: Icons.person_outlined,
                   hint: "Contact Person Name",
                   keyboardType: TextInputType.name,
@@ -361,17 +205,93 @@ class _PostPageState extends State<PostPage> {
                   keyboardType: TextInputType.name,
                   obsecure: false,
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 ButtonView(
                   buttonText: "Submit",
                   color: AppColors.mainColor,
                   textColor: AppColors.whiteColor,
-                  onPressed: (){},
+                  onPressed: () {
+                    model.validateForm();
+                  },
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class AppDropdownWidget extends StatelessWidget {
+  const AppDropdownWidget({
+    Key key,
+    this.chooseValue,
+    this.title,
+    this.item,
+    this.onChanged,
+    @required this.icon,
+  }) : super(key: key);
+
+  final String chooseValue;
+  final String title;
+  final IconData icon;
+  final List<String> item;
+  final Function(String value) onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(color: AppColors.whiteColor, boxShadow: [
+        BoxShadow(color: AppColors.grey200, blurRadius: 5.0, spreadRadius: 3.0),
+      ]),
+      padding: const EdgeInsets.symmetric(
+          //  horizontal: 10,
+          vertical: 3),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Icon(
+              icon,
+              color: AppColors.mainColor,
+              size: 20,
+            ),
+          ),
+          Container(
+            height: 30,
+            width: 1,
+            color: AppColors.grey300,
+          ),
+          const SizedBox(
+            width: 18,
+          ),
+          Expanded(
+            child: DropdownButton(
+              hint: chooseValue == null
+                  ? Text('$title')
+                  : Text(
+                      chooseValue,
+                      style: TextStyle(color: AppColors.mainColor),
+                    ),
+              isExpanded: true,
+              underline: Container(),
+              iconSize: 30.0,
+              style: TextStyle(color: AppColors.mainColor),
+              items: item.map(
+                (val) {
+                  return DropdownMenuItem<String>(
+                    value: val,
+                    child: Text(val),
+                  );
+                },
+              ).toList(),
+              onChanged: onChanged,
+            ),
+          ),
+        ],
       ),
     );
   }
