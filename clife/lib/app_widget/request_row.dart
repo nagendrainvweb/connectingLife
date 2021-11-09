@@ -1,5 +1,7 @@
+import 'package:clife/screens/request_page/details_page.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/app_image.dart';
+import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -11,7 +13,7 @@ class RequestRow extends StatelessWidget {
 
   final Function onAcceptClicked;
 
-  _getListTitleValue(String title, String value) {
+  _getListTitleValue({@required String title, @required String value}) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +41,7 @@ class RequestRow extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 5,
-       // shadowColor: AppColors.mainColor,
+        // shadowColor: AppColors.mainColor,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
           child: Column(
@@ -91,29 +93,34 @@ class RequestRow extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Ram ",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
+                          InkWell(
+                            onTap: () {
+                              Utility.pushToNext(context, DetailsPage());
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Ram ",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 3,
-                              ),
-                              Text(
-                                "(21 Yaers)",
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey.shade600,
-                                  fontSize: 10,
+                                SizedBox(
+                                  width: 3,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  "(21 Yaers)",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.grey.shade600,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: 5,
@@ -122,15 +129,17 @@ class RequestRow extends StatelessWidget {
                             child: Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                _getListTitleValue("Type", "Blood"),
+                                // _getListTitleValue("Type", "Blood"),
+                                _getListTitleValue(
+                                    title: 'Type', value: 'Blood'),
+                                SizedBox(
+                                    // width: 2,
+                                    ),
+                                // _getListTitleValue("Date", "23-10-2021"),
                                 SizedBox(
                                   width: 5,
                                 ),
-                                _getListTitleValue("Date", "23-10-2021"),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                _getListTitleValue("Location", "Mulund"),
+                                // _getListTitleValue("Location", "Mulund"),
                               ],
                             ),
                           ),
@@ -166,6 +175,7 @@ class RequestRow extends StatelessWidget {
                                       color: AppColors.whiteColor,
                                     ),
                                   ),
+                                  // ElevatedButton(onPressed: onPressed, child: child)
                                 ],
                               ),
                             ),

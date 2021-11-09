@@ -1,6 +1,7 @@
 import 'package:clife/app_widget/button_widget.dart';
 import 'package:clife/app_widget/custom_app_bar.dart';
 import 'package:clife/app_widget/request_row.dart';
+import 'package:clife/screens/request_page/details_page.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/app_image.dart';
 import 'package:clife/util/dialog_helper.dart';
@@ -58,12 +59,11 @@ class _RequestPageState extends State<RequestPage> {
   }
 }
 
-
-
 class RequestViewSheetWidget extends StatelessWidget {
   const RequestViewSheetWidget({
-    Key key,
+    Key key,  this.isDetails=false,
   }) : super(key: key);
+  final bool isDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,6 @@ class RequestViewSheetWidget extends StatelessWidget {
           children: [
             Text(
               "Ram",
-              // textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.grey700,
@@ -135,7 +134,7 @@ class RequestViewSheetWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Age",
+              "Age/M",
               // textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -254,6 +253,30 @@ class RequestViewSheetWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 5,),
+              Row(
+                children: [
+                  Text(
+                    "Message",
+                    // textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: AppColors.grey500,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    ":  Thank You",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(
                 height: 5,
               ),
@@ -283,70 +306,86 @@ class RequestViewSheetWidget extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 18,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.mainColor,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      "Call",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.whiteColor,
+            (isDetails)?Container():      
+              Container(
+                //color: AppColors.redAccent,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          //  horizontal: 18,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Call",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 18,
-                      vertical: 6,
+                    SizedBox(
+                      width: 10,
                     ),
-                    // margin: EdgeInsets.symmetric(horizontal:10,),
-                    decoration: BoxDecoration(
-                      color: Colors.greenAccent,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      "WhatsApp",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.whiteColor,
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          //    horizontal: 18,
+                          vertical: 6,
+                        ),
+                        // margin: EdgeInsets.symmetric(horizontal:10,),
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "WhatsApp",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 18,
-                      vertical: 6,
+                    SizedBox(
+                      width: 10,
                     ),
-                    decoration: BoxDecoration(
-                      color: AppColors.buttonColor,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      "Share",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.whiteColor,
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          //  horizontal: 18,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.buttonColor,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Share",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
