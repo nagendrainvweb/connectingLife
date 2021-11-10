@@ -1,6 +1,7 @@
 import 'package:clife/model/post_data.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/app_image.dart';
+import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -118,8 +119,20 @@ class RequestRow extends StatelessWidget {
                                   fontSize: 10,
                                 ),
                               ),
-                            ],
-                          ),
+                          
+                                Text(
+                                  "(21 Yaers)",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.grey.shade600,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                        
+                    
                           SizedBox(
                             height: 5,
                           ),
@@ -171,6 +184,7 @@ class RequestRow extends StatelessWidget {
                                       color: AppColors.whiteColor,
                                     ),
                                   ),
+                                  // ElevatedButton(onPressed: onPressed, child: child)
                                 ],
                               ),
                             ),

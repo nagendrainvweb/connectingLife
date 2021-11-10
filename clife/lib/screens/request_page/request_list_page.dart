@@ -115,8 +115,9 @@ class _RequestPageState extends State<RequestPage> {
 
 class RequestViewSheetWidget extends StatelessWidget {
   const RequestViewSheetWidget({
-    Key key,
+    Key key,  this.isDetails=false,
   }) : super(key: key);
+  final bool isDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +173,6 @@ class RequestViewSheetWidget extends StatelessWidget {
           children: [
             Text(
               "Ram",
-              // textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: AppColors.grey700,
@@ -188,7 +188,7 @@ class RequestViewSheetWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Age",
+              "Age/M",
               // textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -307,6 +307,30 @@ class RequestViewSheetWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 5,),
+              Row(
+                children: [
+                  Text(
+                    "Message",
+                    // textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: AppColors.grey500,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    ":  Thank You",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(
                 height: 5,
               ),
@@ -336,6 +360,7 @@ class RequestViewSheetWidget extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
+            (isDetails)?Container():      
               Container(
                 //color: AppColors.redAccent,
                 child: Row(
