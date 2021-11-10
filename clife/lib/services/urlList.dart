@@ -4,6 +4,8 @@ class UrlList {
   static final PINCODE = BASE_URL + "geo-locations?postal_code=";
   static final AGENT_LIST = BASE_URL + "user_agents";
   static final SEND_OTP = BASE_URL + "send-otp";
+  static final POST_REQUIREMENT = BASE_URL + "post-requirements";
+  static final POSTED_LIST = BASE_URL + "posted-requirements";
 
   static String UPLOAD_IMAGE = BASE_URL + "imageUpload";
 
@@ -13,25 +15,4 @@ class UrlList {
   static String CHECK_USER = BASE_URL + "checkUserEmail";
   static String CHECK_USER_MOBILE = BASE_URL + "checkMobileNumber";
   static String CHNAGE_PASSWORD = BASE_URL + "changePassword";
-
-  static String USER_ADDRESS = BASE_URL + "specific_user_address";
-  static String USER_ASSORTER = BASE_URL + "specific_user_assorter";
-  static String USER_AGENT = BASE_URL + "specific_user_agent";
-
-  static String UPDATE_USER_PROFILE = BASE_URL + "updateUserProfile";
-  static String UPDATE_USER = BASE_URL + "updateUser";
-  static String UPDATE_USER_AGENT = BASE_URL + "updateUserAgent";
-  static String UPDATE_USER_ASSORTER = BASE_URL + "updateUserAssorter";
-  static String UPDATE_USER_ADDRESS = BASE_URL + "updateUserAddress";
-
-  static String DELETE_ADDRESS = BASE_URL + "deleteUserAddress";
-  static String DELETE_ASSORTER = BASE_URL + "deleteAssorter";
-
-  static String ADD_ASSORTER = BASE_URL + "addUserAssorters";
-  static String ADD_ADDRESS = BASE_URL + "addUserAddress";
-  static String ADD_AGENT = BASE_URL + "addUserAgents";
-
-  static String UPDATE_ASSORTER = BASE_URL + "updateUserAssorters";
-  static String UPDATE_ADDRESS = BASE_URL + "updateUserAddress";
-  static String UPDATE_AGENT = BASE_URL + "updateUserAgents";
 }

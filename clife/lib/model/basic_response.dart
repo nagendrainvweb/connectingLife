@@ -15,6 +15,7 @@ class BasicResponse<T> {
   String token;
   String otp;
   String image_url;
+  String nextPageUrl;
   T data;
   List<int> hasSubCategories;
 
@@ -30,6 +31,7 @@ class BasicResponse<T> {
       this.pageContent,
       this.cartCount,
       this.otp,
+      this.nextPageUrl,
       this.token,
       this.hasSubCategories,
       this.image_url});
@@ -49,6 +51,7 @@ class BasicResponse<T> {
           otp: json["otp"].toString(),
           token: json['token'],
           image_url: json["image_url"],
+          nextPageUrl: json['next_page_url'],
           data: data,
           hasSubCategories: json['hasSubCategories']?.cast<int>());
     } catch (e) {

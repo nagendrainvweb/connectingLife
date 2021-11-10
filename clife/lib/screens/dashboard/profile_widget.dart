@@ -1,10 +1,12 @@
 import 'package:clife/app_widget/button_widget.dart';
+import 'package:clife/prefrence_util/Prefs.dart';
 import 'package:clife/screens/blood_type/blood_type_page.dart';
 import 'package:clife/screens/update_profile/bio_details.dart';
 import 'package:clife/screens/update_profile/update_address_page.dart';
 import 'package:clife/screens/update_profile/update_profile_page.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/app_image.dart';
+import 'package:clife/util/dialog_helper.dart';
 import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -132,7 +134,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   text: "Log Out",
                   iconData: Icons.logout_outlined,
                   onClick: () {
-                    // Utility.pushToNext(context, OtherDetails());
+                    DialogHelper.showLogoutDialog(context, () async {
+                      Navigator.pop(context);
+                      await Prefs.clear();
+                      Utility.pushToLogin(context);
+                    });
                   },
                 ),
                 SizedBox(

@@ -71,7 +71,11 @@ class RegisterViewModel extends ChangeNotifier with AppHelper {
       Utility.showSnackBar(context, "Please fill required detaiils");
     } else {
       UserData data = await _getUpdatedUserData();
-      Utility.pushToNext(context, BloodGroupPage(data: data,));
+      Utility.pushToNext(
+          context,
+          BloodGroupPage(
+            data: data,
+          ));
     }
   }
 
@@ -126,8 +130,12 @@ class RegisterViewModel extends ChangeNotifier with AppHelper {
         progressDialog("Please wait...", context);
         final response = await _apiService.fetchCityState(value);
         hideProgressDialog(context);
-        stateControler.text = response[Constants.STATE];
-        cityController.text = response[Constants.CITY];
+        final list = response.data;
+        if(list.isNotEmpty){
+           stateControler.text = list[0].state;
+        cityController.text = list[0].district;
+        }
+       
         notifyListeners();
       } catch (e) {
         hideProgressDialog(context);

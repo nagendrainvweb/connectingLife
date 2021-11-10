@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:clife/modal/basic_response.dart';
+import 'package:clife/model/basic_response.dart';
+import 'package:clife/model/post_data.dart';
+import 'package:clife/model/postal_data.dart';
 import 'package:clife/model/user_data.dart';
 import 'package:clife/prefrence_util/Prefs.dart';
 import 'package:clife/services/api_error_exception.dart';
@@ -41,7 +43,7 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> fetchCityState(String pincode) async {
+  Future<BasicResponse<List<PostalData>>> fetchCityState(String pincode) async {
     try {
       myPrint("url is ${UrlList.PINCODE + pincode}");
       final request = await http.get(Uri.parse(UrlList.PINCODE + pincode));
@@ -49,12 +51,12 @@ class ApiService {
       myPrint("register response : ${request.body.toString()}");
       final Map<String, dynamic> data = new Map<String, dynamic>();
       if (jsonResponse["status"] == Constants.SUCCESS) {
-        final jsonData = jsonResponse['data'];
-        if (jsonData != null) {
-          data[Constants.CITY] = jsonData[0]["Region"];
-          data[Constants.STATE] = jsonData[0]['State'];
-          return data;
+        final data = jsonResponse['data'];
+        final List<PostalData> postalList = [];
+        for (var e in data) {
+          postalList.add(PostalData.fromJson(e));
         }
+        return BasicResponse.fromJson(json: jsonResponse, data: postalList);
       }
       throw ApiErrorException(jsonResponse['message']);
 
@@ -67,30 +69,103 @@ class ApiService {
     }
   }
 
-  // Future<BasicResponse<List<AgentData>>> fetchAgentList() async {
-  //   try {
-  //     myPrint(" url is " + UrlList.AGENT_LIST);
-  //     final request = await http.get(Uri.parse(UrlList.AGENT_LIST));
-  //     final jsonResponse = json.decode(request.body);
-  //     myPrint(request.body);
-  //     if (jsonResponse[Constants.SUCCESS] == true) {
-  //       final data = jsonResponse[Constants.DATA];
-  //       List<AgentData> list = [];
-  //       for (var item in data) {
-  //         list.add(AgentData.fromJson(item));
-  //       }
-  //       return BasicResponse.fromJson(json: jsonResponse, data: list);
-  //     }
-  //     throw ApiErrorException(jsonResponse['message']);
+  Future<BasicResponse<String>> postRequirement(
+      String type,
+      String age,
+      String gender,
+      String hospitalName,
+      String address,
+      String area,
+      String bloodGroup,
+      String city,
+      String pincode,
+      String state,
+      String country,
+      String contactPersonName,
+      String contactPersonMobile,
+      String message,
+      String unit,
+      String unitQty,
+      String patientName,
+      double latitude,
+      double longitude) async {
+    try {
+      myPrint(" url is " + UrlList.POST_REQUIREMENT);
+      final token = await Prefs.token;
+      final header = {"Authorization": "Bearer $token"};
+      header.addAll(getDefaultHeader);
+      final body = {
+        "type": "$type",
+        "age": "$age",
+        "gender": "$gender",
+        "hospital_name": "$hospitalName",
+        "address": "$address",
+        "area": "$area",
+        "blood_group": "$bloodGroup",
+        "city": "$city",
+        "pincode": "$pincode",
+        "state": "$state",
+        "country": "$country",
+        "contact_person_name": "$contactPersonName",
+        "contact_person_mobile": "$contactPersonMobile",
+        "message": "$message",
+        "unit": "Litre",
+        "unit_qty": "$unit",
+        "patient_name": "$patientName",
+        "latitude": "$latitude",
+        "longitude": "$longitude",
+      };
+      final request = await http.post(Uri.parse(UrlList.POST_REQUIREMENT),
+          body: body, headers: header);
+      final jsonResponse = json.decode(request.body);
+      myPrint(request.body);
+      if (jsonResponse["status"] == Constants.SUCCESS) {
+        final data = jsonResponse[Constants.DATA];
+        // List<AgentData> list = [];
+        // for (var item in data) {
+        //   list.add(AgentData.fromJson(item));
+        // }
+        return BasicResponse<String>.fromJson(json: jsonResponse, data: "");
+      }
+      throw ApiErrorException(jsonResponse['message']);
+      //  return BasicResponse.fromJson(json: jsonResponse, data: "");
+    } on SocketException catch (e) {
+      throw ApiErrorException(NO_INTERNET_CONN);
+    } on Exception catch (e) {
+      // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
+      throw ApiErrorException(e.toString());
+    }
+  }
 
-  //     //  return BasicResponse.fromJson(json: jsonResponse, data: "");
-  //   } on SocketException catch (e) {
-  //     throw ApiErrorException(NO_INTERNET_CONN);
-  //   } on Exception catch (e) {
-  //     // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
-  //     throw ApiErrorException(e.toString());
-  //   }
-  // }
+  Future<BasicResponse<List<PostData>>> fetchPostList(int page) async {
+    try {
+      myPrint("url is ${UrlList.POSTED_LIST}");
+      final token = await Prefs.token;
+      final header = {"Authorization": "Bearer $token"};
+      header.addAll(getDefaultHeader);
+      myPrint("header is ${header.toString()}");
+      final request = await http.get(Uri.parse(UrlList.POST_REQUIREMENT+"?page=$page"),
+          headers: header);
+      final jsonResponse = json.decode(request.body);
+      myPrint("register response : ${request.body.toString()}");
+      if (jsonResponse["status"] == Constants.SUCCESS) {
+        final data = jsonResponse['data'];
+        final List<PostData> postList = [];
+        for (var e in data) {
+          postList.add(PostData.fromJson(e));
+        }
+        return BasicResponse.fromJson(json: jsonResponse, data: postList);
+      }
+      throw ApiErrorException(jsonResponse['message']);
+
+      //  return BasicResponse.fromJson(json: jsonResponse, data: "");
+    } on SocketException catch (e) {
+      throw ApiErrorException(NO_INTERNET_CONN);
+    } on Exception catch (e) {
+      // sendMail(UrlList.SEND_OTP, SOMETHING_WRONG_TEXT);
+      throw ApiErrorException(e.toString());
+    }
+  }
 
   // Future<BasicResponse<dynamic>> fileUpload(
   //     List<File> file, List<String> nameList) async {
@@ -252,7 +327,7 @@ class ApiService {
       //final id = await Prefs.userId;
       //final body = {"user_id": id};
       final token = await Prefs.token;
-      final request = await http.get(Uri.parse(UrlList.USER_DETAILS+"$token"),
+      final request = await http.get(Uri.parse(UrlList.USER_DETAILS + "$token"),
           headers: getDefaultHeader);
       myPrint("userdetails response : ${request.body.toString()}");
       final jsonResponse = json.decode(request.body);

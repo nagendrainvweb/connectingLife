@@ -1,5 +1,5 @@
 // @dart=2.10
-import 'package:clife/modal/basic_response.dart';
+import 'package:clife/model/basic_response.dart';
 import 'package:clife/prefrence_util/Prefs.dart';
 import 'package:flutter/material.dart';
 

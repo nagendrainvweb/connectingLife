@@ -72,6 +72,7 @@ class OtpViewModel extends ChangeNotifier with AppHelper {
     try {
       progressDialog("Please wait...", context);
       final response = await _apiService.sendOtp(mobileNo);
+     // myPrint("text")
       hideProgressDialog(context);
       setToken(response.token);
       setActualOtp(response.otp);

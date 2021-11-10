@@ -1,3 +1,4 @@
+import 'package:clife/model/post_data.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/app_image.dart';
 import 'package:flutter/material.dart';
@@ -6,10 +7,11 @@ import 'package:flutter_svg/svg.dart';
 class RequestRow extends StatelessWidget {
   const RequestRow({
     Key key,
-    this.onAcceptClicked,
+    this.onAcceptClicked, this.postData,
   }) : super(key: key);
 
   final Function onAcceptClicked;
+  final PostData postData;
 
   _getListTitleValue(String title, String value) {
     return Expanded(
@@ -39,9 +41,9 @@ class RequestRow extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 5,
-       // shadowColor: AppColors.mainColor,
+        // shadowColor: AppColors.mainColor,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
           child: Column(
             children: [
               Row(
@@ -50,12 +52,12 @@ class RequestRow extends StatelessWidget {
                   Container(
                     height: 60,
                     width: 60,
-                    padding: const EdgeInsets.all(5),
+                  //  padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       // border:
                       //     Border.all(color: AppColors.mainColor, width: 1),
                       borderRadius: BorderRadius.circular(12),
-                      color: AppColors.redAccent.withOpacity(0.3),
+                      //color: AppColors.redAccent.withOpacity(0.3),
                     ),
                     child: Stack(
                       children: [
@@ -63,19 +65,22 @@ class RequestRow extends StatelessWidget {
                           alignment: Alignment.center,
                           child: SvgPicture.asset(
                             AppImages.blood_fill_drop,
-                            height: 50,
-                            width: 50,
-                            color: AppColors.redAccent.withOpacity(0.9),
+                            height: 60,
+                            width: 60,
+                            color: AppColors.redAccent.withOpacity(1.0),
                           ),
                         ),
                         Align(
                           alignment: Alignment.center,
-                          child: Text(
-                            "A+",
-                            style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
+                          child: Container(
+                            margin: EdgeInsets.only(top: 10,left: 5),
+                            child: Text(
+                              postData.bloodGroup,
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
@@ -94,7 +99,7 @@ class RequestRow extends StatelessWidget {
                           Row(
                             children: [
                               Text(
-                                "Ram ",
+                                postData.patientName+" ",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -105,7 +110,7 @@ class RequestRow extends StatelessWidget {
                                 width: 3,
                               ),
                               Text(
-                                "(21 Yaers)",
+                                "( ${postData.age} / ${postData.gender} )",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                   fontWeight: FontWeight.normal,
@@ -122,15 +127,15 @@ class RequestRow extends StatelessWidget {
                             child: Row(
                               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                _getListTitleValue("Type", "Blood"),
+                                _getListTitleValue("Type", postData.type),
                                 SizedBox(
                                   width: 5,
                                 ),
-                                _getListTitleValue("Date", "23-10-2021"),
+                                _getListTitleValue("Date", postData.getDate()),
                                 SizedBox(
                                   width: 5,
                                 ),
-                                _getListTitleValue("Location", "Mulund"),
+                                _getListTitleValue("Location", postData.city),
                               ],
                             ),
                           ),

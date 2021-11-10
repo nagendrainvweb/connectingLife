@@ -1,12 +1,19 @@
+import 'package:clife/app/app_repo.dart';
 import 'package:clife/app_widget/button_widget.dart';
 import 'package:clife/app_widget/custom_app_bar.dart';
+import 'package:clife/app_widget/custom_empty_widget.dart';
+import 'package:clife/app_widget/custom_error_widget.dart';
 import 'package:clife/app_widget/request_row.dart';
+import 'package:clife/screens/request_page/request_list_viewmodel.dart';
 import 'package:clife/util/app_color.dart';
 import 'package:clife/util/app_image.dart';
+import 'package:clife/util/constants.dart';
 import 'package:clife/util/dialog_helper.dart';
 import 'package:clife/util/utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:stacked/stacked.dart';
 
 class RequestPage extends StatefulWidget {
   const RequestPage({Key key}) : super(key: key);
@@ -35,30 +42,76 @@ class _RequestPageState extends State<RequestPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      appBar: MyAppBar(
-        title: "Request",
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (_, index) => RequestRow(
-                onAcceptClicked: () {
-                  _showConfirmDialog(context);
-                },
-              ),
-            ),
+    final appRepo = Provider.of<AppRepo>(context, listen: false);
+    return ViewModelBuilder<RequestListViewModel>.reactive(
+      viewModelBuilder: () => RequestListViewModel(),
+      onModelReady: (RequestListViewModel model) => model.intiData(appRepo),
+      builder: (_, model, child) => Scaffold(
+          backgroundColor: AppColors.backgroundColor,
+          appBar: MyAppBar(
+            title: "Request",
           ),
-        ],
-      ),
+          body: (model.loading)
+              ? Center(child: CircularProgressIndicator())
+              : (model.hasError)
+                  ? CustomErrorWidget(
+                      text: Constants.SOMETHING_WRONG,
+                      buttonText: "Retry",
+                      onRetryClicked: () {
+                        model.fetchPostList();
+                      })
+                  : model.postList.isNotEmpty
+                      ? Column(
+                          children: [
+                            Expanded(
+                              child: NotificationListener<ScrollNotification>(
+                                onNotification: (scrollInfo) {
+                                  if (scrollInfo.metrics.pixels ==
+                                      scrollInfo.metrics.maxScrollExtent) {
+                                    if (model.hasNext && !model.loadMore) {
+                                      model.fetchPostList(loading: false);
+                                    }
+                                    // _loadMore();
+                                    //print(' i am at bottom');
+                                  }
+                                  return true;
+                                },
+                                child: RefreshIndicator(
+                                  onRefresh: () async {
+                                    await model.fetchPostList(loading: false);
+                                    return true;
+                                  },
+                                  child: ListView.builder(
+                                    itemCount: model.postList.length,
+                                    itemBuilder: (_, index) => Column(
+                                      children: [
+                                        RequestRow(
+                                          postData: model.postList[index],
+                                          onAcceptClicked: () {
+                                            _showConfirmDialog(context);
+                                          },
+                                        ),
+                                        (model.loadMore)
+                                            ? Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              )
+                                            : Container()
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : CustomEmptyWidget(
+                          text:
+                              "Requests are not available right now, Please check after some time.",
+                        )),
     );
   }
 }
-
-
 
 class RequestViewSheetWidget extends StatelessWidget {
   const RequestViewSheetWidget({
@@ -283,70 +336,85 @@ class RequestViewSheetWidget extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 18,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.mainColor,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      "Call",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.whiteColor,
+              Container(
+                //color: AppColors.redAccent,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          //  horizontal: 18,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Call",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 18,
-                      vertical: 6,
+                    SizedBox(
+                      width: 10,
                     ),
-                    // margin: EdgeInsets.symmetric(horizontal:10,),
-                    decoration: BoxDecoration(
-                      color: Colors.greenAccent,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      "WhatsApp",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.whiteColor,
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          //    horizontal: 18,
+                          vertical: 6,
+                        ),
+                        // margin: EdgeInsets.symmetric(horizontal:10,),
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "WhatsApp",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 18,
-                      vertical: 6,
+                    SizedBox(
+                      width: 10,
                     ),
-                    decoration: BoxDecoration(
-                      color: AppColors.buttonColor,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      "Share",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.whiteColor,
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          //  horizontal: 18,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.buttonColor,
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Share",
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

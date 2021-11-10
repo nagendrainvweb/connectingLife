@@ -53,19 +53,20 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            _myPage.jumpToPage(2);
-          });
+          // setState(() {
+          //   _myPage.jumpToPage(2);
+          // });
         },
         tooltip: 'Post',
         child: InkWell(
           onTap: () {
             Utility.pushToNext(context, PostPage());
           },
-          child: SvgPicture.asset(
-            AppImages.blood_drop,
-            color: AppColors.whiteColor,
-          ),
+          child: Icon(Icons.add_outlined,color: AppColors.whiteColor,)
+          // SvgPicture.asset(
+          //   AppImages.blood_drop,
+          //   color: AppColors.whiteColor,
+          // ),
         ),
        // elevation: 2.0,
       ),
