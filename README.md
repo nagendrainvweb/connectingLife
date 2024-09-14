@@ -1,6 +1,3 @@
-Here is a detailed GitHub README for your blood donation app, **Connecting Life**:
-
----
 
 # Connecting Life - Blood Donation Service App
 
