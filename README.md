@@ -124,7 +124,6 @@ Ensure you have your Firebase or any other backend service configured and integr
 
 ## Contributors
 - **Nagendra Prajapati** - Lead Developer
-- **Contributors' Names** - (if any)
 
 ---
 
