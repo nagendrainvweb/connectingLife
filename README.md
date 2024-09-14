@@ -65,58 +65,36 @@ We use **Provider** to manage state across the app. Provider helps in separating
    - Users can log in using their credentials to access the app's services.
    - Includes secure authentication.
    
-   ![Login Page](path-to-your-image/login.png)
-
 2. **Register Page**
    - Allows new users to sign up by providing basic information such as name, blood group, and contact details.
    
-   ![Register Page](path-to-your-image/register.png)
-
 3. **Dashboard**
    - Acts as the home screen, displaying an overview of available features, including quick access to search for donors, post blood requests, and more.
    
-   ![Dashboard](path-to-your-image/dashboard.png)
-
 4. **Search Donor Page**
    - Users can search for blood donors based on their location and required blood group.
    - Filters help to narrow down the search results.
-
-   ![Search Donor](path-to-your-image/search-donor.png)
 
 5. **Post Blood Request**
    - Users can post a request specifying the blood group, quantity required, and location.
    - Requests are visible to potential donors in the area.
 
-   ![Post Blood Request](path-to-your-image/post-blood-request.png)
-
 6. **Connect with Donor**
    - Users can connect directly with potential donors via phone or in-app messaging to arrange blood donations.
    - The app ensures secure communication between donors and recipients.
-
-   ![Connect with Donor](path-to-your-image/connect-with-donor.png)
 
 ---
 
 ## App Images
 Here are some screenshots of the key screens:
 
-1. **Login Page**  
-   ![Login Page](path-to-your-image/login.png)
+1. **Splash Page**  
+   ![WhatsApp Image 2024-09-14 at 5 55 45 PM](https://github.com/user-attachments/assets/820b9517-286b-4f4f-b875-9e39ecf19936)
 
-2. **Register Page**  
-   ![Register Page](path-to-your-image/register.png)
 
-3. **Dashboard**  
-   ![Dashboard](path-to-your-image/dashboard.png)
+2. **Login Page**  
+   ![WhatsApp Image 2024-09-14 at 5 55 45 PM (1)](https://github.com/user-attachments/assets/fbc308d0-795c-4fcd-b45a-29270a60ad75)
 
-4. **Search Donor Page**  
-   ![Search Donor](path-to-your-image/search-donor.png)
-
-5. **Post Blood Request Page**  
-   ![Post Blood Request](path-to-your-image/post-blood-request.png)
-
-6. **Connect with Donor Page**  
-   ![Connect with Donor](path-to-your-image/connect-with-donor.png)
 
 ---
 
